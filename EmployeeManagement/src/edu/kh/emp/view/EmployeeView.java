@@ -55,7 +55,6 @@ public class EmployeeView {
 				input = -1; // 반복문 첫 번째 바퀴에서 잘못 입력하면 종료되는 상황을 방지
 				sc.nextLine(); // 입력 버퍼에 남아있는 잘못 입력된 문자열 제거해서
 							   // 무한 반복 방지
-			} finally {
 				
 			}
 			

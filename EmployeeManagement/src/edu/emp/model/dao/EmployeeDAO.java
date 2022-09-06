@@ -54,7 +54,7 @@ public class EmployeeDAO {
 			stmt = conn.createStatement();
 			
 			// SQL을 수행 후 결과(ResultSet) 반환 받음
-			stmt.executeQuery(sql);
+			rs = stmt.executeQuery(sql);
 			
 			// 3. 조회 결과를 얻어와 한 행씩 접근하여
 			// Employee 객체 생성 후 컬럼 값 옮겨 담기
