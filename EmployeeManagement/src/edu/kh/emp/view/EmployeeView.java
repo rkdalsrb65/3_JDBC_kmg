@@ -39,7 +39,7 @@ public class EmployeeView {
 				
 				switch(input) {
 				case 1: break;
-				case 2: break;
+				case 2: selectAll(); break;
 				case 3: break;
 				case 4: break;
 				case 5: break;
@@ -49,7 +49,6 @@ public class EmployeeView {
 				case 0: System.out.println("프로그램을 종료합니다..."); break;
 				default : System.out.println("메뉴에 존재하는 번호만 입력하세요.");
 				}
-				
 				
 			} catch(InputMismatchException e) {
 				System.out.println("정수만 입력해주세요.");
