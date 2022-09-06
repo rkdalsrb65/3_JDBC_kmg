@@ -29,6 +29,7 @@ public class JDBCExample4 {
 		Connection conn = null;
 		Statement stmt  = null;
 		ResultSet rs = null;
+		
 		try {
 			System.out.print("직급명 입력 : ");
 			String input = sc.nextLine();
@@ -36,13 +37,13 @@ public class JDBCExample4 {
 			System.out.print("급여 입력 : ");
 			String input2 = sc.nextLine();
 			// JDBC 참조 변수에 알맞은 객체 대입
-			
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			
 			String type = "jdbc:oracle:thin:@";
 			String ip = "localhost";
 			String port = ":1521";
 			String sid = ":XE";
+//			String url = "jdbc:oracle:thin:@localhost:1521:XE";
 			String user = "kh_kmg";
 			String pw = "kh1234";
 			
@@ -84,6 +85,7 @@ public class JDBCExample4 {
 				// 생성된 Emp객체를 list에 추가
 				list.add(employee);
 				
+//				list.add(new Employee(empName, jobName, salary, annualIncome);
 			}
 			
 			// 만약 List에 추가된 Emp 객체가 없다면 "조회 결과가 없음"
