@@ -341,4 +341,100 @@ public class EmployeeDAO {
 		return result;
 	}
 
+	/** 사번이 일치하는 사원 수정 DAO
+	 * @param emp
+	 * @return result
+	 */
+	public int updateEmployee(Employee emp) {
+		int result = 0; // 결과 저장용 변수
+		
+		try {
+			Class.forName(driver);
+			conn = DriverManager.getConnection(url, user, pw);
+			conn.setAutoCommit(false); // AutoCommit 비활성화
+			
+			
+			String sql = "UPDATE EMPLOYEE SET "
+					+ "EMAIL = ?, PHONE = ?, SALARY = ? "
+					+ "WHERE EMP_ID = ?";
+			
+			// PreparedStatement 생성
+			pstmt = conn.prepareStatement(sql);
+			
+			// ?에 알맞은 값을 세팅
+			pstmt.setString(1, emp.getEmail());
+			pstmt.setString(2, emp.getPhone());
+			pstmt.setInt(3, emp.getSalary());
+			pstmt.setInt(4, emp.getEmpId());
+			
+			result = pstmt.executeUpdate(); // 반영된 행의 개수 반환
+			if(result == 0) conn.rollback();
+			else			conn.commit();
+			
+			
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			
+			try {
+				// JDBC 객체 자원 반환
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+				
+				
+			} catch (Exception e) {
+			e.printStackTrace();	
+			}
+		 
+		}
+		
+		// 결과 반환
+		return result;
+	}
+
+	
+	public int deleteEmployee(int empId) {
+		int result = 0; // 결과 저장용 변수
+		
+		try {
+			Class.forName(driver);
+			conn = DriverManager.getConnection(url, user, pw);
+			conn.setAutoCommit(false); // AutoCommit 비활성화
+			
+			
+			String sql = "DELETE FROM EMPLOYEE WHERE EMP_ID = ?";
+			
+			// PreparedStatement 생성
+			pstmt = conn.prepareStatement(sql);
+			
+			// ?에 알맞은 값을 세팅
+			pstmt.setInt(1, empId);
+			
+			result = pstmt.executeUpdate(); // 반영된 행의 개수 반환
+			if(result > 0) conn.commit();
+			else			conn.rollback();
+			
+			
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			
+			try {
+				// JDBC 객체 자원 반환
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+				
+				
+			} catch (Exception e) {
+			e.printStackTrace();	
+			}
+		 
+		}
+		
+		// 결과 반환
+		return result;
+		
+		}
 }

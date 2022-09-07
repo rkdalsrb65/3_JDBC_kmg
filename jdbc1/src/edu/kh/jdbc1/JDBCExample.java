@@ -21,6 +21,9 @@ public class JDBCExample {
 		//		-> OracleDriver.class (JDBC 드라이버) 이용
 		// Library : 다른 업체/개인이 특정 언어로 만든 기능(클래스)
 		
+		// -> 오라클에서 제공하는 Java와 연결하기 위한 라이브러리
+		//		(OracleDriver 제공)
+		
 		// 1단계 : JDBC 객체 참조 변수 선언 (java.sql패키지의 인터페이스)
 		
 		Connection conn = null;
