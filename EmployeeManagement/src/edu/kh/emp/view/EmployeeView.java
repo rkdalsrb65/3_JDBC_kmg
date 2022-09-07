@@ -28,7 +28,7 @@ public class EmployeeView {
 				System.out.println("3. 사번이 일치하는 사원 정보 조회");
 				System.out.println("4. 사번이 일치하는 사원 정보 수정");
 				System.out.println("5. 사번이 일치하는 사원 정보 삭제");
-				System.out.println("6. 입력 받은 부서와 일치 모든 사원 정보 조회");
+				System.out.println("6. 입력 받은 부서와 일치하는 모든 사원 정보 조회");
 				System.out.println("7. 입력 받은 급여 이상을 받는 모든 사원 정보 조회");
 				System.out.println("8. 부서별 급여 합 전체 조회");
 				System.out.println("0. 프로그램 종료");
@@ -40,7 +40,7 @@ public class EmployeeView {
 				switch(input) {
 				case 1: break;
 				case 2: selectAll(); break;
-				case 3: break;
+				case 3: selectEmpId(); break;
 				case 4: break;
 				case 5: break;
 				case 6: break;
@@ -100,5 +100,34 @@ public class EmployeeView {
 			
 		}
 	}
+	
+	/**
+	 * 사번이 일치하는 사원 정보 조회
+	 */
+	public void selectEmpId() {
+		System.out.println("<사번이 일치하는 사원 정보 조회>");
+		
+		// 사번 입력 받기
+		int empId = inputEmpId();
+		
+		// 입력 받은 사번을 DAO의 selectEmpid() 메서드로 전달하여 조회된 사원 정보 반환 받기
+		Employee emp = dao.selectEmpId(empId); // 
+		
+		
+	}
+	
+	/** 사번을 입력받아 반환하는 메서드
+	 * @return
+	 */
+	public int inputEmpId() {
+		System.out.print("사번 입력 : ");
+		int empId = sc.nextInt();
+		sc.nextLine(); // 버퍼에 남은 개행문자 제거
+		
+		return empId;
+	}
+	
+	
+	
 	
 }

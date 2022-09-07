@@ -97,6 +97,76 @@ public class EmployeeDAO {
 		// 5. 결과 반환
 		return empList;
 	}
+
+	/** 사번이 일치하는 사원 정보 조회 DAO
+	 * @param empId
+	 * @return emp
+	 */
+	public Employee selectEmpId(int empId) {
+		
+		// 결과 저장용 변수를 선언
+		Employee emp = null;
+		// 만약 조회 결과가 있으면 Employee 객체를 생성해서 emp에 대입
+		// 만약 조회 결과가 없으면 emp에 아무것도 대입하지 않음(null)
+		
+		try {
+			Class.forName(driver); // 오라클 JDBC 드라이버 메모리 로드
+			conn = DriverManager.getConnection(url, user, pw); // 커넥션 생성해서 얻어오기
+			
+			// SQL 작성
+			String sql = "SELECT EMP_ID, EMP_NAME, EMP_NO, EMAIL, PHONE, NVL(DEPT_TITLE, '부서없음') DEPT_TITLE, JOB_NAME, SALARY"
+					+ " FROM EMPLOYEE"
+					+ " LEFT JOIN DEPARTMENT ON (DEPT_CODE = DEPT_ID)"
+					+ " JOIN JOB USING(JOB_CODE)"
+					+ " WHERE EMP_ID = " + empId; // View에서 입력 받은 사번
+			
+			// Statement 생성
+			
+			stmt = conn.createStatement();
+			
+			// SQL 수행 후 결과(ResultSet) 반환 받기
+			rs = stmt.executeQuery(sql);
+			
+			// ** 조회 결과가 최대 1행인 경우
+			//    불필요한 조건 검사를 줄이기 위해 if문 사용 권장 **
+			if(rs.next()) { // 조회 결과가 있을 경우
+				
+//				int empId = rs.getInt("EMP_ID"); // -> 전달 받은 (파라미터)와 같은 값이므로 불필요
+				String empName = rs.getString("EMP_NAME");
+				String empNo = rs.getString("EMP_No");
+				String email = rs.getString("EMAIL");
+				String phone = rs.getString("PHONE");
+				String departmentTitle = rs.getString("DEPT_TITLE");
+				String jobName = rs.getString("JOB_NAME");
+				int salary = rs.getInt("SALARY");
+				
+				// 조회 결과를 담은 Employee 객체 생성 후
+				// 결과 저장용 변수 emp에 대입
+				emp = new Employee(empId, empName, empNo, email, phone, departmentTitle, jobName, salary);
+				
+			}
+			
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			
+			try {
+				
+				if(rs != null) rs.close();
+				if(stmt != null) stmt.close();
+				if(conn != null) conn.close();
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		// 결과 반환
+		return emp;
+	}
 	
 
 }
