@@ -39,7 +39,7 @@ public class EmployeeView {
 				System.out.println();
 				
 				switch(input) {
-				case 1: break;
+				case 1: insertEmployee(); break;
 				case 2: selectAll(); break;
 				case 3: selectEmpId(); break;
 				case 4: break;
@@ -63,6 +63,76 @@ public class EmployeeView {
 			
 			
 		} while(input != 0);
+		
+	}
+	
+	
+	
+	/**
+	 *  사원 정보 추가
+	 */
+	public void insertEmployee() {
+		System.out.println("<사원 정보 추가>");
+		System.out.print("사번 : ");
+		
+		// 사번
+		int empId = inputEmpId();
+		
+		// 이름
+		System.out.print("이름 : ");
+		String empName = sc.next();
+
+		System.out.print("주민등록번호 : ");
+		String empNo = sc.next();
+		
+		System.out.print("이메일 : ");
+		String email = sc.next();
+		
+		System.out.print("전화번호(-제외) : ");
+		String phone = sc.next();
+		
+		System.out.print("부서코드(D1~D9) : ");
+		String deptCode = sc.next();
+		
+		System.out.print("직급코드(J1~J9) : ");
+		String jobCode = sc.next();
+		
+		System.out.print("급여등급(S1~S6) : ");
+		String salLevel = sc.next();
+		
+		System.out.print("급여 : ");
+		int salary = sc.nextInt();
+		
+		System.out.print("보너스 : ");
+		double bonus = sc.nextDouble();
+		
+		System.out.print("사수번호 : ");
+		int managerId = sc.nextInt();
+		
+		// 입력 받은 값을
+		// Employee 객체에 담아서 DAO로 전달
+		Employee emp = new Employee(empId, empName, empNo, email, phone, salary, deptCode, jobCode, salLevel, bonus, managerId);
+		
+		int result = dao.insertEmployee(emp);
+		// INSERT, UPDATE, DELETE 같은 DML 구문은 
+		// 수행 후 테이블에 반영된 행의 개수를 반환함
+		// -> 조건이 잘못된 경우 반영된 행이 없으므로 0 반환
+		
+		if(result > 0) { // DML 구문 성공 시
+			System.out.println("사원 정보 추가 성공");
+			
+		} else { // DML 구문 실패 시
+			System.out.println("사원 정보 추가 실패...");
+		}
+		
+//		System.out.print("입사일 : ");
+//		String hireDate = sc.next();
+//		
+//		System.out.print("퇴사일 : ");
+//		String entDate = sc.next();
+//		
+//		System.out.print("퇴사여부 : ");
+//		String entYn = sc.next();
 		
 	}
 	
