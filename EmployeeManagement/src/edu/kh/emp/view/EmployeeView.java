@@ -73,7 +73,7 @@ public class EmployeeView {
 	 */
 	public void insertEmployee() {
 		System.out.println("<사원 정보 추가>");
-		System.out.print("사번 : ");
+		System.out.println("사번 : ");
 		
 		// 사번
 		int empId = inputEmpId();
