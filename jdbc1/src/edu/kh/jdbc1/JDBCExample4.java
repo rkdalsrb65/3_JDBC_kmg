@@ -114,14 +114,11 @@ public class JDBCExample4 {
 				if(stmt != null) stmt.close();
 				if(conn != null) conn.close();
 				
-				
-				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 			
 		}		
-		
 		
 	}
 
