@@ -1,6 +1,7 @@
 package edu.kh.emp.view;
 
 import java.util.InputMismatchException;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -292,7 +293,7 @@ public class EmployeeView {
 		System.out.println("<입력 받은 부서와 일치하는 모든 사원 정보 조회>");
 		
 		System.out.print("부서명 : ");
-		String departmentTitle = sc.nextLine();
+		String departmentTitle = sc.next();
 		// ** 메뉴를 선택하는 코드에서 sc.nextInt() 
 		// 이후 개행문자 제거를 위해 sc.nextLine() 추가 **
 		
@@ -324,9 +325,6 @@ public class EmployeeView {
 			System.out.println(key + " : " + value + "원");
 		}
 	}
-	
-	
-	
 	
 	/**
 	 * 주민등록번호가 일치하는 사원 정보 조회
