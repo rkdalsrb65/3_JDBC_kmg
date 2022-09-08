@@ -454,8 +454,7 @@ public class EmployeeDAO {
 			conn = DriverManager.getConnection(url, user, pw);
 			
 			// SQL 작성
-			String sql = "SELECT EMP_ID, EMP_NAME, EMP_NO, EMAIL, PHONE, NVL(DEPT_TITLE, '부서없음') DEPT_TITLE, "
-					+ "	JOB_NAME, SALARY"
+			String sql = "SELECT EMP_ID, EMP_NAME, EMP_NO, EMAIL, PHONE, NVL(DEPT_TITLE, '부서없음') DEPT_TITLE, JOB_NAME, SALARY"
 					+ " FROM EMPLOYEE"
 					+ " LEFT JOIN DEPARTMENT ON (DEPT_ID = DEPT_CODE)"
 					+ " JOIN JOB USING(JOB_CODE)"
@@ -500,11 +499,12 @@ public class EmployeeDAO {
 			
 			
 			
-		}catch(Exception e) {
+		} catch(Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			
 			try {
+				
 				if(rs != null) rs.close();
 				if(pstmt != null) pstmt.close();
 				if(conn != null) conn.close();
