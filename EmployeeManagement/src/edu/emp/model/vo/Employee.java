@@ -118,8 +118,6 @@ public class Employee {
 		this.salary = salary;
 	}
 	
-	
-	
 	public String getDeptCode() {
 		return deptCode;
 	}
@@ -170,6 +168,5 @@ public class Employee {
 				+ salary + ", deptCode=" + deptCode + ", jobCode=" + jobCode + ", salLevel=" + salLevel + ", bonus="
 				+ bonus + ", managerId=" + managerId + "]";
 	}
-	
 	
 }
