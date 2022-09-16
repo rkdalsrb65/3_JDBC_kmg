@@ -1,6 +1,12 @@
 package edu.kh.jdbc.model.service;
 
+// import static 구문
+// -> static이 붙은 필드, 메서드를 호출할 때
+//		클래스명을 생략할 수 있게하는 구문
+import static edu.kh.jdbc.common.JDBCTemplate.*;
+
 import java.sql.Connection;
+import java.sql.SQLException;
 
 import edu.kh.jdbc.common.JDBCTemplate;
 import edu.kh.jdbc.model.dao.TestDAO;
@@ -24,19 +30,19 @@ public class TestService {
 	 * @param vo1
 	 * @return result
 	 */
-	public int insert(TestVO vo1) {
+	public int insert(TestVO vo1) throws SQLException {
 		
 		// 커넥션 생성
 		
-		Connection conn = JDBCTemplate.getConnection();
+		Connection conn = getConnection();
 							//클래스명.메서드명
 		// INSERT DAO를 메서드를 호출하여 수행 후 결과 반환 받기
 		// -> Service에서 생성한 Connection 객체를 반드시 같이 전달해야한다!!!!
 		int result = dao.insert(conn, vo1);
 		// result == SQL 수행 후 반영된 결과 행의 개수
 		
-		if(result > 0) JDBCTemplate.commit(conn);
-		else		   JDBCTemplate.rollback(conn);
+		if(result > 0) commit(conn);
+		else		   rollback(conn);
 		
 		// 커넥션 반환(close)
 		JDBCTemplate.close(conn);
