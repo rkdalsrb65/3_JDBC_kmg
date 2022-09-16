@@ -39,9 +39,7 @@ public class TestDAO {
 			e.printStackTrace();
 		}
 		
-		
 	}
-	
 	
 	/** 1행 삽입 DAO
 	 * @param conn
@@ -81,9 +79,30 @@ public class TestDAO {
 			// 6. 사용한 JDBC 객체 자원 반환(close())
 			close(pstmt);
 		}
-		
-		
 		//7. SQL 수행 결과 반환
+		return result;
+	}
+
+
+	public int update(Connection conn, TestVO vo) throws SQLException {
+		
+		int result = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("update");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, vo.getTestTitle());
+			pstmt.setString(2, vo.getTestContent());
+			pstmt.setInt(3, vo.getTestNo());
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
 		return result;
 	}
 
