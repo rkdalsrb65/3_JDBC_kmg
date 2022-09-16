@@ -47,9 +47,65 @@ public class TestService {
 		// 커넥션 반환(close)
 		JDBCTemplate.close(conn);
 		
+		// 결과 반환
 		return result;
 	}
 	// 아메리카노 제조
 	// 콜드브루 제조
 	// 카페라떼 제조
+
+	/** 3행 삽입 서비스
+	 * @param vo1
+	 * @param vo2
+	 * @param vo3
+	 * @return result
+	 * @throws Exception
+	 */
+	public int insert(TestVO vo1, TestVO vo2, TestVO vo3) throws Exception {
+		// throws Exception
+		// -> 아래 catch문에서 강제 발생된 예외를
+		// 호출부로 던진다는 구문
+		
+		// 왜 예외를 강제 발생 시켰는가?
+		// -> Run에서 예외 상황에 대한 다른 결과를 출력하기 위해서
+		
+		// 1. Connection 생성 (무조건 1번!)
+		Connection conn = getConnection();
+		
+		int res = 0; // insert 3회 모두 성공 시 1, 아니면 0
+		
+		try {
+			// insert 중 오류가 발생하면 모든 insert내용 rollback
+			// -> try-catch로 예외가 발생했다는 것을 인지함.
+			
+			int result1 = dao.insert(conn, vo1);
+			
+			int result2 = dao.insert(conn, vo2);
+			
+			int result3 = dao.insert(conn, vo3);
+			
+			if(result1 + result2 + result3 == 3) { // 모두 insert 성공한 경우
+				commit(conn);
+				res = 1;
+			} else {
+				rollback(conn);
+			}
+			
+		} catch (SQLException e) { // dao 수행 중 예외 발생 시
+			rollback(conn);
+			
+			// -> 실패된 데이터를 DB에 삽입하지 않음
+			// -> DB에는 성공된 데이터만 저장이 된다.
+			//    == DB에 저장된 데이터의 신뢰도가 상승한다.
+			e.printStackTrace();
+			
+			// Run2클래스로 예외를 전달 할 수 있도록 예외 강제 발생
+			throw new Exception("DAO 수행 중 예외 발생");
+			
+		} finally { // 무조건 conn 반환하기
+			close(conn);
+		}
+
+		return res; // insert 3회 결과 반환
+	}
 }
