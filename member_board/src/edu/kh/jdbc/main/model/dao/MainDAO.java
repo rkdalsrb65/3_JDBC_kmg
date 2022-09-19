@@ -135,8 +135,8 @@ public class MainDAO {
 			pstmt = conn.prepareStatement(sql);
 
 			// 4. ?에 알맞은 값 대입
-			pstmt.setString(1, loginMember.getMemberId());
-			pstmt.setString(2, loginMember.getMemberPw());
+			pstmt.setString(1, memberId());
+			pstmt.setString(2, memberPw());
 
 			// 5. SQL(SELECT) 수행 후 결과(ResultSet) 반환 받기
 			rs = pstmt.executeQuery();
@@ -144,7 +144,17 @@ public class MainDAO {
 			// 6. 조회 결과가 있을 경우
 			// 컬럼 값을 모두 얻어와
 			// Member 객체를 생성해서 loginMember 반환 받기
+			if(rs.next()) {
 			loginMember = new Member();
+			
+			loginMember.setMemberNo(rs.getInt("MEMBER_NO"));
+			loginMember.setMemberId(memberId);
+			loginMember.setMemberName(rs.getString("MEMBER_NM"));
+			loginMember.setMemberGender(rs.getString("MEMBER_GENDER"));
+			loginMember.setEnrollDate(rs.getString("ENROLL_DATE"));
+			
+			}
+
 			
 		} finally {
 			// 7. 사용한 JDBC 객체 자원 반환
