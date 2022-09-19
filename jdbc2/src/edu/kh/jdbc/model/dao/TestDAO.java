@@ -83,13 +83,16 @@ public class TestDAO {
 		return result;
 	}
 
-
-	public int update(Connection conn, TestVO vo) throws SQLException {
-		
+	/** 번호가 일치하는 행 제목, 내용 수정
+	 * @param conn
+	 * @param vo
+	 * @return result
+	 * @throws SQLException
+	 */
+	public int update(Connection conn, TestVO vo) throws SQLException{
 		int result = 0;
 		
 		try {
-			
 			String sql = prop.getProperty("update");
 			
 			pstmt = conn.prepareStatement(sql);
@@ -103,7 +106,7 @@ public class TestDAO {
 		}finally {
 			close(pstmt);
 		}
+		
 		return result;
 	}
-
 }
