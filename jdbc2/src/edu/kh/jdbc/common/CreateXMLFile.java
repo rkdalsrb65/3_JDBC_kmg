@@ -42,7 +42,6 @@ public class CreateXMLFile {
 			e.printStackTrace();
 		}
 		
-		
 	}
 
 }
