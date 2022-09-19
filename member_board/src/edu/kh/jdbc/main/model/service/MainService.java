@@ -55,5 +55,26 @@ public class MainService {
 		// 5. 삽입 결과 반환
 		return result;
 	}
+
+	/** 로그인 서비스
+	 * @param memberId
+	 * @param memberPw
+	 * @return loginMember
+	 * @throws Exception
+	 */
+	public Member login(String memberId, String memberPw) throws Exception {
+
+		// 1. Connection 생성
+		Connection conn = getConnection();
+
+		// 2. DAO 메서드 호출 후 결과 반환 받기
+		Member loginMember = dao.login(conn, memberId, memberPw);
+
+		// 3. Connection 반환 (SELECT 구문은 트랜잭션 제어 필요 X)
+		close(conn);
+
+		// 4. 조회 결과 반환
+		return loginMember;
+	}
 	
 }
