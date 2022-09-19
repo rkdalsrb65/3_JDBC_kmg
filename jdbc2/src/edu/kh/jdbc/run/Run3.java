@@ -20,16 +20,16 @@ public class Run3 {
 		TestService service = new TestService();
 		
 		System.out.print("번호 : ");
-		int num = sc.nextInt();
+		int testNo = sc.nextInt();
 		sc.nextLine();
 		
 		System.out.print("제목 : ");
-		String title = sc.nextLine();
+		String testTitle = sc.nextLine();
 		
 		System.out.print("내용 : ");
-		String content = sc.nextLine();
+		String testContent = sc.nextLine();
 		
-		TestVO vo = new TestVO(num, title, content);
+		TestVO vo = new TestVO(testNo, testTitle, testContent);
 		
 		try {
 
