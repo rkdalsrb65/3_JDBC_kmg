@@ -88,29 +88,28 @@ public class MainDAO {
 		int result = 0;
 		
 		try {
+			
 			// 2. SQL 얻어오기
 			String sql = prop.getProperty("signUp");
 			
 			// 3. PreaparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			
-			// 5. SQL 수행 후 결과 반환 받기
-			pstmt.executeUpdate();
+			pstmt.setString(1, member.getMemberId());
+			pstmt.setString(2, member.getMemberPw());
+			pstmt.setString(3, member.getMemberName());
+			pstmt.setString(4, member.getMemberGender());
 			
-			// 6. 조회 결과 옮겨 담기
-			// 1행 조회 -> if
-			// N행 조회 -> while
-			while(rs.next()) {
-				
-			}
+			
+			// 4. SQL 수행 후 결과 반환 받기
+			result = pstmt.executeUpdate();
 			
 		} finally {
-			// 7. 사용한 JDBC 객체 자원 반환
-			close(rs);
-			close(pstmt);
-			
-		}
-		
+			// 5. 사용한 JDBC 객체 자원 반환
+				close(pstmt);
+				
+			}
+		// 6. 결과 반환
 		return result;
 	}
 	
