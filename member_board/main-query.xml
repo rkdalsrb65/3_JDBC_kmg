@@ -9,4 +9,10 @@ SELECT COUNT(*) FROM "MEMBER"
 WHERE MEMBER_ID = ?
 AND SECESSION_FL = 'N'
 </entry>
+
+<!--  회원 가입 -->
+<entry key= "signUp">
+INSERT INTO "MEMBER"
+VALUES(SEQ_MEMBER_NO.NEXTVAL, ?, ?, ?, ?, DEFAULT, DEFAULT)
+</entry>
 </properties>
