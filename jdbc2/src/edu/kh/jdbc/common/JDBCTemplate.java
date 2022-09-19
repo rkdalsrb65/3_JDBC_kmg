@@ -66,13 +66,7 @@ public class JDBCTemplate {
 			System.out.println("[Connection 생성 중 예외 발생]");
 			e.printStackTrace();
 		}
-		
-		
-		
-		
-		
-		
-		
+
 		return conn;
 	}
 	
