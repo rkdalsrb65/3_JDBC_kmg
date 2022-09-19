@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Properties;
 
+import edu.kh.jdbc.member.vo.Member;
+
 // DAO(Data Access Object) : DB 연결용 객체
 public class MainDAO {
 	
@@ -59,14 +61,55 @@ public class MainDAO {
 			// 1행 조회 -> if
 			// N행 조회 -> while
 			if(rs.next()) {
+				// result = rs.getInt("COUNT(*)"); // 컬럼명
+				result = rs.getInt(1); // 컬럼순서
+			}
+			
+		} finally {
+			// 7. 사용한 JDBC 객체 자원 반환
+			close(rs);
+			close(pstmt);
+			
+		}
+		
+		// 8. 결과 반환
+		return result;
+	}
+
+	/** 회원 가입 DAO
+	 * @param conn
+	 * @param member
+	 * @return result
+	 * @throws Exception
+	 */
+	public int signUp(Connection conn, Member member) throws Exception {
+		
+		// 1. 결과 저장용 변수
+		int result = 0;
+		
+		try {
+			// 2. SQL 얻어오기
+			String sql = prop.getProperty("signUp");
+			
+			// 3. PreaparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			
+			// 5. SQL 수행 후 결과 반환 받기
+			pstmt.executeUpdate();
+			
+			// 6. 조회 결과 옮겨 담기
+			// 1행 조회 -> if
+			// N행 조회 -> while
+			while(rs.next()) {
 				
 			}
 			
 		} finally {
+			// 7. 사용한 JDBC 객체 자원 반환
+			close(rs);
+			close(pstmt);
 			
 		}
-		
-		
 		
 		return result;
 	}
