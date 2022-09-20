@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import edu.kh.jdbc.main.model.service.MainService;
+import edu.kh.jdbc.member.view.MemberView;
 import edu.kh.jdbc.member.vo.Member;
 
 // 메인 화면
@@ -17,6 +18,10 @@ public class MainView {
 	private Member loginMember = null;
 	// -> 로그인 X == NULL
 	// -> 로그인 O != NULL
+	
+	// 회원 기능 메뉴 객체 생성
+	private MemberView memberView = new MemberView();
+	
 	
 	/**
 	 * 메인 메뉴 출력 메서드
@@ -65,7 +70,8 @@ public class MainView {
 				System.out.println();
 
 				switch (input) {
-				case 1: break;
+				// 회원 기능 서브 메뉴 출력
+				case 1: memberView.memberMenu(loginMember); break;
 				case 2: break;
 				case 0: loginMember = null; System.out.println("\n[로그아웃 되었습니다.]");
 				input = -1; // do-while문이 종료되지 않도록 0이 아닌 값으로 변경 
@@ -223,7 +229,9 @@ public class MainView {
 	 * 4. 비밀번호 변경(현재 비밀번호, 새 비밀번호, 새 비밀번호 확인)
 	 * 5. 회원 탈퇴
 	 * 
-	 * 게시판 기능 (Board View, Service, DAO, board-query,xml)
+	 * ----------------------------------------------------------------
+	 * 
+	 * 게시판 기능 (Board View, Service, DAO, board-query.xml)
 	 * 1. 게시글 목록 조회(최근일 내림차순)
 	 * 		(게시글 번호, 제목, 작성자명, 작성일, 조회수, 댓글 수)
 	 * 2. 게시글 상세 조회(게시글 번호 입력 받음)
