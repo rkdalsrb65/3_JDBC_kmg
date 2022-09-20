@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import edu.kh.jdbc.main.view.MainView;
 import edu.kh.jdbc.member.model.service.MemberService;
 import edu.kh.jdbc.member.vo.Member;
 
@@ -22,13 +23,16 @@ public class MemberView {
 	// 로그인 회원 정보 저장용 변수
 	private Member loginMember = null;
 	
+	//메뉴 번호를 입력 받기 위한 변수
+	private int input = -1;
+	
 	/**
 	 * 회원 기능 메뉴
 	 * @param loginMember(로그인된 회원 정보)
 	 */
 	public void memberMenu(Member loginMember) {
 		
-		int input = -1;
+//		int input = -1; // 필드로 이동
 		
 		// 전달 받은 로그인 회원 정보를 필드에 저장
 		this.loginMember = loginMember;
@@ -55,7 +59,7 @@ public class MemberView {
 				case 2: selectAll(); break;
 				case 3: updateMember(); break;
 				case 4: updatePw(); break;
-				case 5: break;
+				case 5: secession(); break;
 				case 0: System.out.println("[메인 메뉴로 이동합니다.]"); break;
 				default : System.out.println("메뉴에 작성된 번호만 입력해주세요.");
 				}
@@ -218,17 +222,55 @@ public class MemberView {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	private void secession() {
+		System.out.println("\n[회원 탈퇴]\n");
 		
-		
-		
-		
-		
-		
-		
-		
+		try {
+			System.out.print("비밀번호 입력 : ");
+			String memberPw = sc.next();
+			
+			while(true) {
+				System.out.print("정말 탈퇴하시겠습니까? (Y/N) : ");
+				char ch = sc.next().toUpperCase().charAt(0);
+				if(ch == 'Y') {
+					// 서비스 호출 후 결과 반환 받기
+					int result = service.secession(memberPw, loginMember.getMemberNo());
+												// 비밀번호, 회원 번호
+					if(result > 0) {
+						System.out.println("\n[탈퇴 되었습니다...]\n");
+						
+						input = 0; // 메인 메뉴로 이동
+						
+						MainView.loginMember = null; // 로그아웃
+						
+					} else {
+						System.out.println("\n[비밀번호가 일치하지 않습니다.]\n");
+					}
+					
+					break; // while문 종료
+					
+				} else if(ch == 'N') {
+					
+					System.out.println("\n[취소 되었습니다.]\n");
+					break;
+					
+				} else {
+					
+					System.out.println("\n[Y또는 N만 입력 해주세요.]\n");
+				}
+				
+			}
+			
+		} catch (Exception e) {
+			System.out.println("\n<<회원 탈퇴 중 예외 발생>>\n");
+			e.printStackTrace();
+		}
 		
 		
 	}
+	
 	
 	
 }
