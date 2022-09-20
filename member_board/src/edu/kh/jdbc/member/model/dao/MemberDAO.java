@@ -145,5 +145,39 @@ public class MemberDAO {
 		// 수정 결과 반환
 		return result;
 	}
+
+	/** 회원 탈퇴 DAO
+	 * @param conn
+	 * @param memberPw
+	 * @param memberNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int secession(Connection conn, String memberPw, int memberNo) throws Exception {
+		
+		// 결과 저장용 변수 선언
+		int result = 0;
+		
+		try {
+			// SQL 얻어오기
+			String sql = prop.getProperty("secession");
+			
+			// PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			
+			// ? 알맞은 값 대입
+			pstmt.setInt(1, memberNo);
+			pstmt.setString(2, memberPw);
+			
+			// SQL 수행 후 결과 반환 받기
+			result = pstmt.executeUpdate();
+			
+		} finally {
+			// JDBC 객체 자원 반환
+			close(pstmt);
+		}
+		// 탈퇴 결과 반환
+		return result;
+	}
 	
 }
