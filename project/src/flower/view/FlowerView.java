@@ -30,9 +30,7 @@ public class FlowerView {
 					System.out.println("\n***** 게시판 프로그램 *****\n");
 					System.out.println("1. 로그인");
 					System.out.println("2. 회원 가입");
-					System.out.println("3. ");
-					System.out.println("4. ");
-					System.out.println("5. ");
+					System.out.println("3. 비회원 로그인");
 					System.out.println("0. 프로그램 종료");
 
 					System.out.print("\n메뉴 선택 : ");
@@ -44,6 +42,7 @@ public class FlowerView {
 					switch (input) {
 					case 1: break; // 로그인
 					case 2: break;// 회원 가입
+					case 3: break;// 비회원 로그인
 					case 0: System.out.println("프로그램 종료"); break;
 					default: System.out.println("메뉴에 작성된 번호만 입력해주세요.");
 					}
