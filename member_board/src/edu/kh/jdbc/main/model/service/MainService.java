@@ -77,7 +77,24 @@ public class MainService {
 		return loginMember;
 	}
 	
-	/** ㅇ_<
+	
+	
+	/** 아이디 찾기
+	 * @param userName
+	 * @return userId
+	 * @throws Exception
+	 */
+	public String findId(String userName) throws Exception {
+		Connection conn = getConnection();
+		
+		String userId = dao.findId(conn, userName);
+		
+		close(conn);
+		
+		return userId;
+	}
+	
+	/** 비밀번호 찾기
 	 * @param userId
 	 * @param userName
 	 * @return userPw
@@ -92,5 +109,7 @@ public class MainService {
 	     
 	     return userPw;
 	  }
+
+
 	
 }
