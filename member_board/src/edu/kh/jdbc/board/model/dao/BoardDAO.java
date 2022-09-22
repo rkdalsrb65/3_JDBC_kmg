@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Properties;
 
 import edu.kh.jdbc.board.model.vo.Board;
+import edu.kh.jdbc.board.model.vo.Comment;
 import edu.kh.jdbc.member.vo.Member;
 
 public class BoardDAO {
@@ -81,5 +82,82 @@ public class BoardDAO {
 		
 	}
 
+	/** 게시글 상세 조회 DAO
+	 * @param conn
+	 * @param boardNo
+	 * @return board
+	 * @throws Exception
+	 */
+	public Board selectBoard(Connection conn, int boardNo) throws Exception {
+		// 결과 저장용 변수 선언
+		Board board = null;
+		
+		try {
+			String sql = prop.getProperty("selectBoard"); // SQL 얻어오기
+			 
+			pstmt = conn.prepareStatement(sql); // PreparedStatement 생성
+			
+			pstmt.setInt(1, boardNo); // ? 알맞은 값 대입
+			
+			rs = pstmt.executeQuery(); // SQL(SELECT) 수행 후 결과(ResultSet) 반환 받기
+			
+			if(rs.next()) { // 조회 결과가 있을 경우
+				board = new Board(); // Board 객체 생성 == board는 null 아님
+				
+				board.setBoardNo(		rs.getInt	("BOARD_NO"));
+				board.setBoardTitle(	rs.getString("BOARD_TITLE"));
+				board.setBoardContent(	rs.getString("BOARD_CONTENT"));
+				board.setMemberNo(		rs.getInt	("MEMBER_NO"));
+				board.setMemberName(	rs.getString("MEMBER_NM"));
+				board.setReadCount(		rs.getInt	("READ_COUNT"));
+				board.setCreateDate(	rs.getString("CREATE_DT"));
+
+			}
+			
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return board; // 조회 결과
+	}
+
+	/** 조회 수 증가 DAO
+	 * @param conn
+	 * @param boardNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int increaseReadCount(Connection conn, int boardNo) throws Exception {
+		// 결과 저장용 변수 선언
+		int result = 0;
+		
+		try {
+			String sql = prop.getProperty("increaseReadCount"); // SQL 얻어오기
+			
+			pstmt = conn.prepareStatement(sql); // PreparedStatement 생성
+			pstmt.setInt(1, boardNo); // ? 알맞은 값 대입
+			result = pstmt.executeUpdate(); // SQL(SELECT) 수행 후 결과(ResultSet) 반환 받기
+
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
