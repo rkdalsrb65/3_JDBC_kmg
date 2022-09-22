@@ -170,8 +170,31 @@ public class MainDAO {
 		return loginMember;
 	}
 	
+	/** 이름으로 아이디찾기
+	 * @param conn
+	 * @param userName
+	 * @return memberId
+	 * @throws Exception
+	 */
+	public String findId(Connection conn, String userName) throws Exception{
+	     String memberId = null;
+	     
+	     String sql = "SELECT MEMBER_ID"
+	           + " FROM MEMBER"
+	           + " WHERE MEMBER_NM = ?";
+	     
+	     pstmt = conn.prepareStatement(sql);
+	     pstmt.setString(1, userName);
+	     rs = pstmt.executeQuery();
+	     
+	     if(rs.next()) {
+	        memberId = rs.getString("MEMBER_ID");
+	     }		
+		
+		return memberId;
+	}	
 	
-	/** ㅇ_<
+	/** 아이디 + 이름으로 비밀번호 찾기
 	 * @param conn
 	 * @param userId
 	 * @param userName
@@ -196,4 +219,6 @@ public class MainDAO {
 	     }
 	     return memberPw;
 	  }
+
+
 }
