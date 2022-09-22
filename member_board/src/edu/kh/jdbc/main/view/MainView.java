@@ -47,7 +47,8 @@ public class MainView {
 					System.out.println("\n***** 회원제 게시판 프로그램 *****\n");
 					System.out.println("1. 로그인");
 					System.out.println("2. 회원 가입");
-					System.out.println("3. 비밀번호 찾기");
+					System.out.println("3. 아이디 찾기");
+					System.out.println("4. 비밀번호 찾기");
 					System.out.println("0. 프로그램 종료");
 
 					System.out.print("\n메뉴 선택 : ");
@@ -59,7 +60,8 @@ public class MainView {
 					switch (input) {
 					case 1: login(); break; // 로그인
 					case 2: signUp(); break;// 회원 가입
-					case 3: findPw(); break;// 찾기
+					case 3: findId(); break;// 아이디 찾기
+					case 4: findPw(); break;// 비밀번호 찾기
 					case 0: System.out.println("프로그램 종료"); break;
 					default: System.out.println("메뉴에 작성된 번호만 입력해주세요.");
 					}
@@ -266,12 +268,35 @@ public class MainView {
 	 * 
 	 */
 	
+
 	/**
-	 * ㅇ_<
+	 * 이름으로 아이디 찾기
+	 */
+	private void findId() {
+		System.out.println("\n[아이디 찾기]\n");
+	     try {
+	    	 System.out.print("이름 : ");
+	    	 String userName = sc.next();
+	    	 
+	    	 String userId = service.findId(userName);
+	    	 
+	    	 if(userId == null) {
+	    		 System.out.println("\n[개인 정보가 일치하지 않습니다.]\n");
+	    		 } else {
+	    			 System.out.printf("\n[%s님의 아이디 => %s]\n", userName, userId);
+	    			 }	    	 
+	     } catch(Exception e) {
+		        System.out.println("\n<<아이디 찾기 중 예외 발생>>\n");
+		        e.printStackTrace();
+		     }
+
+	}
+	
+	/**
+	 * 아이디 + 이름으로 비밀번호 찾기
 	 */
 	private void findPw() {
 	     System.out.println("\n[비밀번호 찾기]\n");
-	     
 	     
 	     try {
 	        System.out.print("아이디 : ");
@@ -288,7 +313,7 @@ public class MainView {
 	           System.out.printf("\n[%s님의 비밀번호 => %s]\n", userId, userPw);
 	        }
 	     }catch(Exception e) {
-	        System.out.println("\n<< 비밀번호 찾기 중 예외 발생>>\n");
+	        System.out.println("\n<<비밀번호 찾기 중 예외 발생>>\n");
 	        e.printStackTrace();
 	     }
 	  }
