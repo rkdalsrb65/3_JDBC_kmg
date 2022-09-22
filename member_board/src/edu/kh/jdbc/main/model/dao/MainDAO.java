@@ -170,4 +170,30 @@ public class MainDAO {
 		return loginMember;
 	}
 	
+	
+	/** ㅇ_<
+	 * @param conn
+	 * @param userId
+	 * @param userName
+	 * @return memberPw
+	 * @throws Exception
+	 */
+	public String findPw(Connection conn, String userId, String userName) throws Exception{
+	     String memberPw = null;
+	     
+	     String sql = "SELECT MEMBER_PW"
+	           + " FROM MEMBER\r\n"
+	           + " WHERE MEMBER_ID = ?"
+	           + " AND MEMBER_NM = ?";
+	     
+	     pstmt = conn.prepareStatement(sql);
+	     pstmt.setString(1, userId);
+	     pstmt.setString(2, userName);
+	     rs = pstmt.executeQuery();
+	     
+	     if(rs.next()) {
+	        memberPw = rs.getString("MEMBER_PW");
+	     }
+	     return memberPw;
+	  }
 }

@@ -77,4 +77,20 @@ public class MainService {
 		return loginMember;
 	}
 	
+	/** ㅇ_<
+	 * @param userId
+	 * @param userName
+	 * @return userPw
+	 * @throws Exception
+	 */
+	public String findPw(String userId, String userName) throws Exception{
+	     Connection conn = getConnection();
+	     
+	     String userPw = dao.findPw(conn, userId, userName);
+	     
+	     close(conn);
+	     
+	     return userPw;
+	  }
+	
 }
