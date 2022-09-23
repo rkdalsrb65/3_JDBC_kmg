@@ -144,6 +144,59 @@ public class BoardDAO {
 		}
 		return result;
 	}
+
+	/** 게시글 수정 DAO
+	 * @param conn
+	 * @param board
+	 * @return result
+	 * @throws Exception
+	 */
+	public int updateBoard(Connection conn, Board board) throws Exception {
+		
+		int result = 0;
+		
+		try {
+			String sql = prop.getProperty("updateBoard");
+			
+			pstmt = conn.prepareStatement(sql); // PreparedStatement 생성
+			// ? 알맞은 값 대입
+			pstmt.setString(1, board.getBoardTitle());
+			pstmt.setString(2, board.getBoardContent());
+			pstmt.setInt(3, board.getBoardNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	/**
+	 * @param conn
+	 * @param boardNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int deleteBoard(Connection conn, int boardNo) throws Exception {
+		
+		int result = 0;
+		
+		try {
+			String sql = prop.getProperty("deleteBoard");
+			
+			pstmt = conn.prepareStatement(sql); // PreparedStatement 생성
+			// ? 알맞은 값 대입
+			pstmt.setInt(1, boardNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
 	
 	
 	
