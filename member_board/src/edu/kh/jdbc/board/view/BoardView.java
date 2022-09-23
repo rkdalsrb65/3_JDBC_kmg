@@ -130,7 +130,7 @@ public class BoardView {
 	           
 	           // 댓글 등록, 수정, 삭제
 	           // 수정/삭제 메뉴
-//	           subBoardMenu(board);
+	           subBoardMenu(board);
 	           
 	           
 	        } else {
@@ -144,9 +144,209 @@ public class BoardView {
 		
 	}
 	
+	/** 게시글 상세조회 시 출력되는 서브 메뉴
+	 * @param board(상세조회된 게시글 + 작성자 번호 + 댓글 목록)
+	 */
+	private void subBoardMenu(Board board) {
+		
+		int input = -1;
+		
+		try {
+			System.out.println("1) 댓글 등록");
+			System.out.println("2) 댓글 수정");
+			System.out.println("3) 댓글 삭제");
+			System.out.println("0) 게시판 메뉴로 돌아가기");
+			
+			System.out.print("\n서브 메뉴 선택 : ");
+			input = sc.nextInt();
+			sc.nextLine();
+			
+			
+			int memberNo = MainView.loginMember.getMemberNo();
+			
+			switch(input) {
+			case 1 : insertComment(board.getBoardNo(), memberNo); break;
+			case 2 : updateComment(board.getCommentList(), memberNo); break;
+			case 3 : break;
+			case 0 : System.out.println("\n[게시판 메뉴로 돌아갑니다...]\n"); break;
+			default : System.out.println("\n[메뉴에 작성된 번호만 입력해주세요.]\n");
+			}
+			
+			// 댓글 등록, 수정, 삭제 선택 시 각각의 서비스 
+			// 메서드 종료 후 다시 서브메뉴 메서드 호출
+			if(input > 0) {
+				
+				try {
+		              board = bService.selectBoard(board.getBoardNo(), MainView.loginMember.getMemberNo());
+		 
+		              System.out.println(" --------------------------------------------------------");
+		              System.out.printf("글번호 : %d | 제목 : %s\n", board.getBoardNo(), board.getBoardTitle());
+		              System.out.printf("작성자ID : %s | 작성일 : %s | 조회수 : %d\n",
+		                    board.getMemberName(), board.getCreateDate().toString(), board.getReadCount());
+		              System.out.println(" --------------------------------------------------------");
+		              System.out.println(board.getBoardContent());
+		              System.out.println(" --------------------------------------------------------");
+		 
+		           
+		              // 댓글 목록
+		              if(!board.getCommentList().isEmpty()) {
+		                 for(Comment c : board.getCommentList()) {
+		                    System.out.printf("댓글번호: %d   작성자: %s  작성일: %s\n%s\n",
+		                          c.getCommentNo(), c.getMemberName(), c.getCreateDate(), c.getCommentContent());
+		                    System.out.println(" --------------------------------------------------------");
+		                 }
+		              }
+		           }catch (Exception e) {
+		              e.printStackTrace();
+		           }
+				
+				subBoardMenu(board);
+				
+			}
+			
+			
+		} catch (InputMismatchException e) {
+			System.out.println("\n<<입력 형식이 올바르지 않습니다.>>\n");
+			sc.nextLine(); // 입력 버퍼에 남아있는 잘못된 문자열 제거			
+		}
+		
+	}
 	
+	/** 댓글 등록
+	 * @param bNo
+	 * @param mNo
+	 */
+	private void insertComment(int bNo, int mNo) {
+		
+		try {
+			System.out.println("\n[댓글 등록]\n");
+			
+//			String content = ""; // 빈 문자열
+			
+			// 내용 입력 받기
+			String content = inputContent();
+			
+//			String input = null; // 참조하는 객체가 없음
+//			
+//			System.out.println("입력 종료 시 ($exit) 입력");
+//			
+//			while(true) {
+//				input = sc.nextLine();
+//				
+//				if(input.equals("$exit")) {
+//					break;
+//				}
+//				
+//				// 입력된 내용을 content에 누적
+//				content += input + "\n";
+//				
+//			}
+			
+			// DB INSERT 시 필요한 값을 하나의 Comment 객체에 저장
+			Comment comment = new Comment();
+			comment.setCommentContent(content);
+			comment.setBoardNo(bNo);
+			comment.setMemberNo(mNo);
+			
+			// 댓글 삽입 서비스 호출 후 결과 반환 받기
+			int result = cService.insertComment(comment);
+			
+			if(result > 0) {
+				System.out.println("\n[댓글 등록 성공]\n");
+			} else {
+				System.out.println("\n[댓글 등록 실패...]\n");
+			}
+			
+		} catch (Exception e) {
+			System.out.println("\n<<댓글 등록 중 예외 발생>>\n");
+			e.printStackTrace();
+		}
+		
+		
+	}
 	
+	/** 
+	 * 내용 입력
+	 * @return content
+	 */
+	private String inputContent() {
+		String content = ""; // 빈 문자열
+		
+		String input = null; // 참조하는 객체가 없음
+		
+		System.out.println("입력 종료 시 ($exit) 입력");
+		
+		while(true) {
+			input = sc.nextLine();
+			
+			if(input.equals("$exit")) {
+				break;
+			}
+			
+			// 입력된 내용을 content에 누적
+			content += input + "\n";
+			
+		}
+		return content;
+	}
 	
+	/** 댓글 수정
+	 * @param commentList
+	 * @param memberNo
+	 */
+	private void updateComment(List<Comment> commentList, int memberNo) {
+		
+		// 댓글 번호를 입력 받아
+		// 1) 해당 댓글이 commentList에 있는지 검사
+		// 2) 있다면 해당 댓글이 로그인한 회원이 작성한 글인지 검사
+			
+		try {
+			System.out.println("\n[댓글 수정]\n");
+			System.out.print("수정할 댓글 번호 입력 : ");
+			int commentNo = sc.nextInt();
+			sc.nextLine();
+			
+			boolean flag = true;
+			
+			for(Comment c : commentList) {
+				if(c.getCommentNo() == commentNo) { // 댓글 번호 일치
+					flag = false;
+					
+					if(c.getMemberNo() == memberNo) { // 회원 번호 일치
+						
+						// 수정할 댓글 내용 입력 받기
+						String content = inputContent();
+						
+						// 댓글 수정 서비스 호출
+						int result = cService.updateComment(commentNo, content);
+						
+						if(result > 0) {
+							System.out.println("\n[댓글 수정 성공]\n");
+						} else {
+							System.out.println("\n[댓글 수정 실패...]\n");
+						}
+						
+						} else {
+							System.out.println("\n[자신의 댓글만 수정할 수 있습니다.]\n");
+						}
+					break; // 더 이상의 검사 불필요
+					}
+				} // for end
+			
+			if(flag) {
+				System.out.println("\n[번호가 일치하는 댓글이 없습니다.]\n");
+			}
+			
+			
+		} catch (Exception e) {
+			System.out.println("\n<<댓글 수정 중 예외 발생>>\n");
+			e.printStackTrace();
+			
+		}
+		
+	}
+	
+
 	
 	
 	
