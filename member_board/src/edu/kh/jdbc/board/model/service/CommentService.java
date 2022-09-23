@@ -53,6 +53,25 @@ public class CommentService {
 		return result; // 결과 반환
 		
 	}
+
+	/** 댓글 삭제 서비스
+	 * @param commentNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int deleteComment(int commentNo) throws Exception{
+		Connection conn = getConnection(); // 커넥션 생성		
+
+		// DAO 메서드 호출 후 결과 반환 받기
+		int result = dao.deleteComment(conn, commentNo);
+		
+		if(result > 0)  commit(conn);
+		else			rollback(conn);
+		
+		close(conn); // 커넥션 반환		
+		
+		return result; // 결과 반환
+	} 
 	
 	
 	
