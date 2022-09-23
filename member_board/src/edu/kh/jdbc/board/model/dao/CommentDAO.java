@@ -144,6 +144,35 @@ public class CommentDAO {
 
 		return result;
 	}
+
+	/** 댓글 삭제 DAO
+	 * @param conn
+	 * @param commentNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int deleteComment(Connection conn, int commentNo) throws Exception {
+
+		int result = 0; 
+		
+		try {
+			
+			String sql = prop.getProperty("deleteComment"); // SQL 얻어오기
+			
+			pstmt = conn.prepareStatement(sql); // PreparedStatement 생성
+			
+			 // ? 알맞은 값 대입
+			
+			pstmt.setInt(1, commentNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} finally {
+			close(pstmt);			
+		}
+
+		return result;
+	}
 	
 	
 	
