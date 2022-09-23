@@ -411,9 +411,8 @@ public class BoardView {
 							if(result > 0) {
 								System.out.println("\n[댓글 삭제 성공]\n");
 								} else {
-									System.out.println("\n[댓글 삭제 실패...]\n");	
+									System.out.println("\n[댓글 삭제 실패...]\n");
 							}
-							
 							
 						} else {
 							System.out.println("\n[취소 되었습니다.]\n");
@@ -470,7 +469,7 @@ public class BoardView {
 			
 		} catch (Exception e) {
 			System.out.println("\n<<게시글 수정 중 예외 발생>>\n");
-			e.printStackTrace();			
+			e.printStackTrace();
 			
 		}
 		
@@ -494,7 +493,7 @@ public class BoardView {
 				if(result > 0) {
 					System.out.println("\n[게시글 삭제 성공]\n");
 					} else {
-						System.out.println("\n[게시글 삭제 실패...]\n");	
+						System.out.println("\n[게시글 삭제 실패...]\n");
 				}
 			} else {
 				System.out.println("\n[삭제 취소]\n");
@@ -502,10 +501,9 @@ public class BoardView {
 			
 		} catch (Exception e) {
 			System.out.println("\n<<게시글 수정 중 예외 발생>>\n");
-			e.printStackTrace();			
+			e.printStackTrace();		
 			
-		}		
-		
+		}
 		
 	}
 	
