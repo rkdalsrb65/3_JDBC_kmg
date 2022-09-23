@@ -13,4 +13,18 @@ WHERE DELETE_FL = 'N' AND BOARD_NO = ?
 ORDER BY COMMENT_NO
 </entry>
 
+<!-- 댓글 등록 -->
+<entry key="insertComment">
+INSERT INTO "COMMENT"
+VALUES(SEQ_COMMENT_NO.NEXTVAL, ?, DEFAULT, DEFAULT, ?, ?)
+</entry>
+
+<!-- 댓글 수정 -->
+<entry key="updateComment">
+UPDATE "COMMENT" SET
+COMMENT_CONTENT  = ?
+WHERE COMMENT_NO  = ?
+</entry>
+
+
 </properties>
