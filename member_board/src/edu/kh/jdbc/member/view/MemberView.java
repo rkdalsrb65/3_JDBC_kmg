@@ -127,7 +127,6 @@ public class MemberView {
 		
 	}
 	
-	
 	/**
 	 * 회원 정보 수정
 	 */
@@ -166,7 +165,6 @@ public class MemberView {
 				// DB에 수정된 값을 동기화 하는 작업이 필요하다!
 				loginMember.setMemberName(memberName);
 				loginMember.setMemberGender(memberGender);
-				
 				
 				System.out.println("\n[회원 정보가 수정되었습니다.]\n");
 			} else {
@@ -215,7 +213,6 @@ public class MemberView {
 			} else {
 				System.out.println("\n[변경 실패]\n");
 			}
-			
 			
 		} catch (Exception e) {
 			System.out.println("\n<<비밀번호 변경 중 예외 발생>>\n");
@@ -268,9 +265,6 @@ public class MemberView {
 			e.printStackTrace();
 		}
 		
-		
-	}
-	
-	
+	}	
 	
 }
