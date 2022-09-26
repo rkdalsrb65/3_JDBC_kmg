@@ -48,7 +48,6 @@ public class MainView {
 					System.out.println("2. 회원 가입");
 					System.out.println("3. 아이디 찾기");
 					System.out.println("4. 비밀번호 찾기");
-					System.out.println("5. 비밀번호 찾기2");
 					System.out.println("0. 프로그램 종료");
 
 					System.out.print("\n메뉴 선택 : ");
@@ -59,10 +58,9 @@ public class MainView {
 
 					switch (input) {
 					case 1: login(); break; // 로그인
-					case 2: signUp(); break;// 회원 가입
-					case 3: findId(); break;// 아이디 찾기
-					case 4: findPw(); break;// 비밀번호 찾기
-					case 5: findPw2(); break;// 비밀번호 찾기
+					case 2: signUp(); break; // 회원 가입
+					case 3: findId(); break; // 아이디 찾기
+					case 4: findPw(); break; // 비밀번호 찾기
 					case 0: System.out.println("프로그램 종료"); break;
 					default: System.out.println("메뉴에 작성된 번호만 입력해주세요.");
 					}
@@ -317,9 +315,5 @@ public class MainView {
 	  }
 	
 	// db에서 가져온 userPw 매개변수로 바로 updatePw 호출
-	private void findPw2() {
-		
-		
-	}
 	
 }
