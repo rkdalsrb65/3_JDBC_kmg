@@ -10,7 +10,7 @@ public class Member {
 	private String memberName;	 // 회원 이름
 	private String memberGender; // 회원 성별
 	private String enrollDate;	 // 회원 가입일
-	private String secessionFlag;// 탈퇴여부
+	private String secessionFlag;// 탈퇴 여부
 	
 	// 기본 생성자
 	public Member() {}
