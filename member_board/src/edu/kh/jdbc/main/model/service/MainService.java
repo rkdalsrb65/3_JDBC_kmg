@@ -85,6 +85,7 @@ public class MainService {
 	 * @throws Exception
 	 */
 	public String findId(String userName) throws Exception {
+		
 		Connection conn = getConnection();
 		
 		String userId = dao.findId(conn, userName);
@@ -100,7 +101,8 @@ public class MainService {
 	 * @return userPw
 	 * @throws Exception
 	 */
-	public String findPw(String userId, String userName) throws Exception{
+	public String findPw(String userId, String userName) throws Exception {
+		
 	     Connection conn = getConnection();
 	     
 	     String userPw = dao.findPw(conn, userId, userName);
