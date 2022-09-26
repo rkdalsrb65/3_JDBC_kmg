@@ -10,27 +10,29 @@ public class Employee {
 	private String employeeId;	  	 // 회원 아이디
 	private String employeePw;	  	 // 회원 비밀번호
 	private String employeeGender;   // 회원 성별
-	private String employeeSsn;		 // 주민 등록 번호
-	private String employeePhone;	 // 핸드폰 번호
-	private String employeeAddress;	 // 주소
 	private String enrollDate;   	 // 회원 가입일
 	private String secessionFlag;	 // 회원 탈퇴 여부
 
 	// 기본 생성자
 	public Employee() { }
 
+	public Employee(String employeeId, String employeePw, String employeeName, String employeeGender) {
+		super();
+		this.employeeId = employeeId;
+		this.employeePw = employeePw;
+		this.employeeName = employeeName;
+		this.employeeGender = employeeGender;
+	}
+	
 	// 매개변수 생성자
 	public Employee(int employeeNo, String employeeName, String employeeId, String employeePw, String employeeGender,
-			String employeeSsn, String employeePhone, String employeeAddress, String enrollDate, String secessionFlag) {
+			String enrollDate, String secessionFlag) {
 		super();
 		this.employeeNo = employeeNo;
 		this.employeeName = employeeName;
 		this.employeeId = employeeId;
 		this.employeePw = employeePw;
 		this.employeeGender = employeeGender;
-		this.employeeSsn = employeeSsn;
-		this.employeePhone = employeePhone;
-		this.employeeAddress = employeeAddress;
 		this.enrollDate = enrollDate;
 		this.secessionFlag = secessionFlag;
 	}
@@ -74,30 +76,6 @@ public class Employee {
 
 	public void setEmployeeGender(String employeeGender) {
 		this.employeeGender = employeeGender;
-	}
-
-	public String getEmployeeSsn() {
-		return employeeSsn;
-	}
-
-	public void setEmployeeSsn(String employeeSsn) {
-		this.employeeSsn = employeeSsn;
-	}
-
-	public String getEmployeePhone() {
-		return employeePhone;
-	}
-
-	public void setEmployeePhone(String employeePhone) {
-		this.employeePhone = employeePhone;
-	}
-
-	public String getEmployeeAddress() {
-		return employeeAddress;
-	}
-
-	public void setEmployeeAddress(String employeeAddress) {
-		this.employeeAddress = employeeAddress;
 	}
 
 	public String getEnrollDate() {
