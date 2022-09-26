@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>employee.xml file</comment>
+
+<!-- 아이디 중복 검사 -->
+<entry key= "idDupCheck">
+SELECT COUNT(*) FROM EMPLOYEE
+WHERE EMPLOYEE_ID = ?
+AND SECESSION_FL = 'N'
+</entry>
+
+<!-- 회원 가입 -->
+<entry key= "signUp">
+INSERT INTO EMPLOYEE
+VALUES(SEQ_MEMBER_NO.NEXTVAL, ?, ?, ?, ?, DEFAULT, DEFAULT)
+</entry>
+
+<!-- 로그인 -->
+<entry key= "login">
+SELECT EMPLOYEE_NO, EMPLOYEE_ID, EMPLOYEE_NM, EMPLOYEE_GENDER,
+TO_CHAR(ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI:SS') ENROLL_DATE
+FROM EMPLOYEE
+WHERE EMPLOYEE_ID = ? AND EMPLOYEE_PW = ? AND SECESSION_FL = 'N'
+</entry>
+
+</properties>
