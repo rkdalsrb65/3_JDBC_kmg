@@ -57,8 +57,7 @@ public class JDBCTemplate {
 				// 개발자가 직접 트랜잭션을 제어할 수 있도록
 				// 자동 커밋 비활성화
 				conn.setAutoCommit(false);
-				
-				
+			
 				
 			}
 			

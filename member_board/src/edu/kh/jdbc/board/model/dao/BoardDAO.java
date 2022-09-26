@@ -314,13 +314,7 @@ public class BoardDAO {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	
