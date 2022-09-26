@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import Employee.model.service.EmployeeService;
 import Employee.vo.Employee;
+import shopping.view.ShoppingView;
 
 public class EmployeeView {
 	
@@ -15,6 +16,9 @@ public class EmployeeView {
 	
 	// 로그인 회원 정보 저장용 변수
 	private Employee loginEmployee = null;
+	
+	// 쇼핑 기능 메뉴 객체 생성
+	private ShoppingView shoppingView = new ShoppingView();
 	
 	//메뉴 번호를 입력 받기 위한 변수
 	private int input = -1;
@@ -64,8 +68,11 @@ public class EmployeeView {
 				switch (input) {
 				// 회원 기능 서브 메뉴 출력
 				case 1: break;
-				case 2: break;
-				case 0: break; 
+				case 2: shoppingView.shoppingmenu(); break;
+				case 0: loginEmployee = null; System.out.println("\n[로그아웃 되었습니다.]");
+				input = -1; // do-while문이 종료되지 않도록 0이 아닌 값으로 변경
+				break; 		// 로그아웃 == loginEmployee가 참조하는 객체 없음(== null)
+							// 로그인 	== loginEmployee가 참조하는 객체 존재(!= null)
 				case 99: System.out.println("프로그램 종료");
 //				input = 0; // -> do-while 조건식을 false로 만듦
 				System.exit(0); // JVM(자바가상머신) 종료, 매개변수는 0, 아니면 오류를 의미
