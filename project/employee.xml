@@ -13,7 +13,7 @@ AND SECESSION_FL = 'N'
 <!-- 회원 가입 -->
 <entry key= "signUp">
 INSERT INTO EMPLOYEE
-VALUES(SEQ_MEMBER_NO.NEXTVAL, ?, ?, ?, ?, DEFAULT, DEFAULT)
+VALUES(SEQ_EMPLOYEE_NO.NEXTVAL, ?, ?, ?, ?, DEFAULT, DEFAULT)
 </entry>
 
 <!-- 로그인 -->
