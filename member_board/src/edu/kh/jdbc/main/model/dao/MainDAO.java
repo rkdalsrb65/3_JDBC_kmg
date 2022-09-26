@@ -145,17 +145,16 @@ public class MainDAO {
 			// 컬럼 값을 모두 얻어와
 			// Member 객체를 생성해서 loginMember 반환 받기
 			if(rs.next()) {
-//			loginMember = new Member();
-//			
-//			loginMember.setMemberNo(rs.getInt("MEMBER_NO"));
-//			loginMember.setMemberId(memberId);
-//			loginMember.setMemberName(rs.getString("MEMBER_NM"));
-//			loginMember.setMemberGender(rs.getString("MEMBER_GENDER"));
-//			loginMember.setEnrollDate(rs.getString("ENROLL_DATE"));
+			loginMember = new Member();
 			
-			 loginMember = new Member(rs.getInt("MEMBER_NO"),
-			 memberId,rs.getString("MEMBER_NM"),rs.getString("MEMBER_GENDER"),
-			 rs.getString("ENROLL_DATE"));
+			loginMember.setMemberNo(rs.getInt("MEMBER_NO"));
+			loginMember.setMemberId(memberId);
+			loginMember.setMemberName(rs.getString("MEMBER_NM"));
+			loginMember.setMemberGender(rs.getString("MEMBER_GENDER"));
+			loginMember.setEnrollDate(rs.getString("ENROLL_DATE"));
+//				loginMember = new Member(rs.getInt("MEMBER_NO"),
+//						memberId,rs.getString("MEMBER_NM"),rs.getString("MEMBER_GENDER"),
+//						rs.getString("ENROLL_DATE"));
 			
 			}
 
@@ -176,7 +175,7 @@ public class MainDAO {
 	 * @return memberId
 	 * @throws Exception
 	 */
-	public String findId(Connection conn, String userName) throws Exception{
+	public String findId(Connection conn, String userName) throws Exception {
 	     String memberId = null;
 	     
 	     String sql = "SELECT MEMBER_ID"
@@ -189,10 +188,10 @@ public class MainDAO {
 	     
 	     if(rs.next()) {
 	        memberId = rs.getString("MEMBER_ID");
-	     }		
+	     }
 		
 		return memberId;
-	}	
+	}
 	
 	/** 아이디 + 이름으로 비밀번호 찾기
 	 * @param conn
@@ -201,7 +200,7 @@ public class MainDAO {
 	 * @return memberPw
 	 * @throws Exception
 	 */
-	public String findPw(Connection conn, String userId, String userName) throws Exception{
+	public String findPw(Connection conn, String userId, String userName) throws Exception {
 	     String memberPw = null;
 	     
 	     String sql = "SELECT MEMBER_PW"
@@ -219,6 +218,5 @@ public class MainDAO {
 	     }
 	     return memberPw;
 	  }
-
 
 }
