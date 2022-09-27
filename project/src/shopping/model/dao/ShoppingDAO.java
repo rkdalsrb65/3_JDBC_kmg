@@ -271,7 +271,7 @@ public class ShoppingDAO {
 		List<Shopping> shoppingList = new ArrayList<>();
 		
 		try {
-			String sql = prop.getProperty("searchshopping1")
+			String sql = prop.getProperty("searchShopping1")
 					+ prop.getProperty("searchShopping2_" + condition)
 					+ prop.getProperty("searchShopping3");
 			
