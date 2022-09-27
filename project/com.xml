@@ -4,7 +4,7 @@
 <comment>com.xml file</comment>
 
 <!-- 댓글 목록 조회 -->
-<entry key="selectCommentList">
+<entry key="selectComList">
 SELECT COM_NO, COM_CONTENT, EMPLOYEE_NO, EMPLOYEE_NM,
 TO_CHAR(CREATE_DT, 'YYYY-MM-DD HH24:MI:SS') CREATE_DT
 FROM COM
@@ -14,20 +14,20 @@ ORDER BY COM_NO
 </entry>
 
 <!-- 댓글 등록 -->
-<entry key="insertComment">
+<entry key="insertCom">
 INSERT INTO COM
 VALUES(SEQ_COM_NO.NEXTVAL, ?, DEFAULT, DEFAULT, ?, ?)
 </entry>
 
 <!-- 댓글 수정 -->
-<entry key="updateComment">
+<entry key="updateCom">
 UPDATE COM SET
 COM_CONTENT  = ?
 WHERE COM_NO  = ?
 </entry>
 
 <!-- 댓글 삭제 -->
-<entry key="deleteComment">
+<entry key="deleteCom">
 UPDATE COM SET
 DELETE_FL = 'Y'
 WHERE COM_NO  = ?
