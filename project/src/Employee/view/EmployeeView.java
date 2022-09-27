@@ -15,7 +15,8 @@ public class EmployeeView {
 	private EmployeeService service = new EmployeeService();
 	
 	// 로그인 회원 정보 저장용 변수
-	private Employee loginEmployee = null;
+//	private Employee loginEmployee = null;
+	public static Employee loginEmployee = null;
 	
 	// 쇼핑 기능 메뉴 객체 생성
 	private ShoppingView shoppingView = new ShoppingView();
@@ -102,7 +103,7 @@ public class EmployeeView {
 		String employeePw = sc.next();
 
 		try {
-			// 로그인 서비스 호출 후 조회 결과를 loginMember에 저장
+			// 로그인 서비스 호출 후 조회 결과를 loginEmployee에 저장
 			loginEmployee = service.login(employeeId, employeePw);
 			
 			System.out.println();
