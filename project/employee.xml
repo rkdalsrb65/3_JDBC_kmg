@@ -24,6 +24,21 @@ FROM EMPLOYEE
 WHERE EMPLOYEE_ID = ? AND EMPLOYEE_PW = ? AND SECESSION_FL = 'N'
 </entry>
 
+<!-- 아이디 찾기 -->
+<entry key= "findId">
+SELECT EMPLOYEE_ID
+FROM EMPLOYEE
+WHERE EMPLOYEE_NM = ?
+</entry>
+
+<!-- 비밀번호 찾기 -->
+<entry key= "findPw">
+SELECT EMPLOYEE_PW
+FROM EMPLOYEE
+WHERE EMPLOYEE_ID = ?
+AND EMPLOYEE_NM = ?
+</entry>
+
 <!--    회원     -->
 
 <!-- 회원 목록 조회 -->
