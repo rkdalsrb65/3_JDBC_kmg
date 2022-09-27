@@ -172,7 +172,7 @@ public class BoardDAO {
 		return result;
 	}
 
-	/**
+	/** 게시글 삭제 DAO
 	 * @param conn
 	 * @param boardNo
 	 * @return result
@@ -231,7 +231,7 @@ public class BoardDAO {
 
 	/** 다음 게시글 번호 생성 DAO
 	 * @param conn
-	 * @return noardNo
+	 * @return boardNo
 	 * @throws Exception
 	 */
 	public int nextBoardNo(Connection conn) throws Exception {
