@@ -32,7 +32,7 @@ public class OrderView {
 				System.out.println();
 				
 				switch(input) {
-				case 1:  break; 	// 주문 목록 조회
+				case 1: /*selectOrder();*/ break; 	// 주문 목록 조회
 				case 2:  break; 	// 주문 상세 조회
 				case 3:  break; 	// 주문 게시글 등록 (삽입)
 				case 4:  break; 	// 주문 게시글 검색
@@ -48,7 +48,6 @@ public class OrderView {
 			}
 			
 		} while(input != 0);		
-		
 		
 	}
 
