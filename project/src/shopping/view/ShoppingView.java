@@ -135,7 +135,7 @@ public class ShoppingView {
 	}
 	
 	/** 게시글 상세조회 시 출력되는 서브 메뉴
-	 * @param board(상세조회된 게시글 + 작성자 번호 + 댓글 목록)
+	 * @param shopping(상세조회된 게시글 + 작성자 번호 + 댓글 목록)
 	 */
 	private void subShoppingMenu(Shopping shopping) {
 		
@@ -511,6 +511,9 @@ public class ShoppingView {
 		}
 	}
 	
+	/**
+	 * 게시글 검색
+	 */
 	private void searchShopping() {
 		
 		try {
@@ -556,6 +559,5 @@ public class ShoppingView {
 		}		
 		
 	}
-	
 	
 }
