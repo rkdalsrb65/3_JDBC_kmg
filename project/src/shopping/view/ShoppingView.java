@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import Employee.view.EmployeeView;
 import shopping.model.service.ShoppingService;
 import shopping.vo.Shopping;
 
@@ -35,7 +36,7 @@ public class ShoppingView {
 				
 				switch(input) {
 				case 1: selectAllShopping(); break; // 쇼핑몰 목록 조회
-				case 2:  break; // 쇼핑몰 상세 조회
+				case 2: selectShopping(); break; // 쇼핑몰 상세 조회
 				case 3:  break; 
 				case 4:  break;
 				case 0: System.out.println("[로그인 메뉴로 이동합니다.]"); break;
@@ -71,21 +72,68 @@ public class ShoppingView {
 			} else {
 				for (Shopping s : shoppingList) {
 
-					// 3 | 샘플 제목3[4] | 유저삼 | 3시간전 | 10
+					// 번호 | 제목 | 이름 | 시간(3시간전) | 조회수
 					System.out.printf("%d | %s[%d] | %s | %s | %d\n", s.getShoppingNo(), s.getShoppingTitle(),
 							s.getCommentCount(), s.getEmployeeName(), s.getCreateDate(), s.getReadCount());
 				}
 			}
 
 		} catch (Exception e) {
-			System.out.println("\n<<게시글 목록 조회 중 예외 발생>>\n");
+			System.out.println("\n<<쇼핑몰 목록 조회 중 예외 발생>>\n");
 			e.printStackTrace();
 		}
 
 	}
 	
 	
-	
+	private void selectShopping() {
+		
+		System.out.println("\n[쇼핑몰 상세 조회]\n");
+		
+		try {
+			System.out.println("게시글 번호 입력 : ");
+			int shoppingNo = sc.nextInt();
+			sc.nextLine();
+			
+			// 게시글 상세 조회 서비스 호출 후 결과 반환 받기
+			Shopping shopping = sService.selectShopping(shoppingNo, EmployeeView.loginEmployee.getEmployeeNo());
+											//게시글번호, 로그인한 회원의 회원번호
+											//			-> 자신의 글 조회수 증가 X​
+	        if (shopping != null) {
+	            System.out.println("--------------------------------------------------------");
+	            System.out.printf("글번호 : %d \n제목 : %s\n", shopping.getShoppingNo(), shopping.getShoppingTitle());
+	            System.out.printf("작성자 : %s | 작성일 : %s  \n조회수 : %d\n",
+	            		shopping.getEmployeeName(), shopping.getCreateDate(), shopping.getReadCount());
+	           System.out.println("--------------------------------------------------------\n");
+	           System.out.println(shopping.getShoppingContent());
+	           System.out.println("\n--------------------------------------------------------");
+	           
+	           // 댓글 목록
+	           if(!shopping.getComList().isEmpty()) {
+	              for(Com c : shopping.getComList()) {
+	                 System.out.printf("댓글번호: %d   작성자: %s  작성일: %s\n%s\n",
+	                       c.getComNo(), c.getEmployeeName(), c.getCreateDate(), c.getComContent());
+	                 System.out.println(" --------------------------------------------------------");
+	              }
+	           }
+	           
+	           // 댓글 등록, 수정, 삭제
+	           // 수정/삭제 메뉴
+	           subShoppingMenu(shopping);
+	           
+	           
+	        } else {
+	           System.out.println("\n[해당 번호의 게시글이 존재하지 않습니다.]\n");
+	        }	
+		} catch (Exception e) {
+			System.out.println("\n<<게시글 상세 조회 중 예외 발생>>\n");
+			e.printStackTrace();
+		}		
+		
+		
+		
+		
+	}
 	
 	
 	
