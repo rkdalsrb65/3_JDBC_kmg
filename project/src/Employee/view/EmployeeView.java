@@ -260,7 +260,7 @@ public class EmployeeView {
 	     }catch(Exception e) {
 	        System.out.println("\n<<비밀번호 찾기 중 예외 발생>>\n");
 	        e.printStackTrace();
-	     }		
+	     }
 		
 	}
 	
