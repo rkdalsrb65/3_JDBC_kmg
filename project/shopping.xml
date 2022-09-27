@@ -111,7 +111,7 @@ OR SHOPPING_CONTENT LIKE '%' || ? || '%')
 </entry>
 
 <!-- 게시글 검색2(검색 조건) -->
-<entry key="searchShopping_4"> <!-- 작성자 -->
+<entry key="searchShopping2_4"> <!-- 작성자 -->
 AND EMPLOYEE_NM LIKE '%' || ? || '%'
 </entry>
 
