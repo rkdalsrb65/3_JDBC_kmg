@@ -17,9 +17,9 @@ CASE
 	ELSE TO_CHAR(CREATE_DT, 'YYYY-MM-DD')
 END CREATE_DT,
 (SELECT COUNT(*)
-FROM "COMMENT" C
-WHERE C.SHOPPING_NO = B.SHOPPING_NO) COMMENT_COUNT
-FROM SHOPPING B
+FROM COM C
+WHERE C.SHOPPING_NO = S.SHOPPING_NO) COM_COUNT
+FROM SHOPPING S
 JOIN EMPLOYEE USING(EMPLOYEE_NO)
 WHERE DELETE_FL = 'N'
 ORDER BY SHOPPING_NO DESC
@@ -38,5 +38,85 @@ WHERE DELETE_FL = 'N'
 AND SHOPPING_NO = ?
 </entry>
 
+<!-- 조회 수 증가 -->
+<entry key="increaseReadCount">
+UPDATE SHOPPING SET
+READ_COUNT = READ_COUNT + 1
+WHERE SHOPPING_NO = ?
+</entry>
+
+
+<!-- 게시글 수정 -->
+<entry key="updateShopping">
+UPDATE SHOPPING SET
+SHOPPING_TITLE = ?,
+SHOPPING_CONTENT = ?
+WHERE SHOPPING_NO = ?
+</entry>
+
+<!-- 게시글 삭제 -->
+<entry key="deleteShopping">
+UPDATE SHOPPING SET
+DELETE_FL = 'Y'
+WHERE SHOPPING_NO = ?
+</entry>
+
+<!-- 게시글 등록 -->
+<entry key="insertShopping">
+INSERT INTO SHOPPING(SHOPPING_NO, SHOPPING_TITLE, SHOPPING_CONTENT, EMPLOYEE_NO)
+VALUES(?, ?, ?, ?)
+</entry>
+
+<!-- 게시글 번호 생성 -->
+<entry key="nextShoppingNo">
+SELECT SEQ_SHOPPING_NO.NEXTVAL FROM DUAL
+</entry>
+
+<!-- 게시글 검색1(WHERE절 시작 까지) 
+		&lt == "<"
+-->
+<entry key="searchShopping1">
+SELECT SHOPPING_NO, SHOPPING_TITLE, EMPLOYEE_NM, READ_COUNT, 
+CASE
+	WHEN SYSDATE - CREATE_DT &lt; 1/24/60
+	THEN FLOOR((SYSDATE - CREATE_DT) * 24 * 60 * 60) || '초 전'
+	WHEN SYSDATE - CREATE_DT &lt; 1/24
+	THEN FLOOR((SYSDATE - CREATE_DT) * 24 * 60) || '분 전'
+	WHEN SYSDATE - CREATE_DT &lt; 1
+	THEN FLOOR((SYSDATE - CREATE_DT) * 24) || '시간 전'
+	ELSE TO_CHAR(CREATE_DT, 'YYYY-MM-DD')
+END CREATE_DT,
+(SELECT COUNT(*)
+FROM COM C
+WHERE C.SHOPPING_NO = S.SHOPPING_NO) COM_COUNT
+FROM SHOPPING S
+JOIN EMPLOYEE USING(EMPLOYEE_NO)
+WHERE DELETE_FL = 'N'
+</entry>
+
+<!-- 게시글 검색2(검색 조건) -->
+<entry key="searchShopping2_1"> <!-- 제목 -->
+AND SHOPPING_TITLE LIKE '%' || ? || '%'
+</entry>
+
+<!-- 게시글 검색2(검색 조건) -->
+<entry key="searchShopping2_2"> <!-- 내용 -->
+AND SHOPPING_CONTENT LIKE '%' || ? || '%'
+</entry>
+
+<!-- 게시글 검색2(검색 조건) -->
+<entry key="searchShopping2_3"> <!-- 제목 + 내용 -->
+AND (SHOPPING_TITLE LIKE '%' || ? || '%'
+OR SHOPPING_CONTENT LIKE '%' || ? || '%')
+</entry>
+<!-- 게시글 검색2(검색 조건) -->
+<entry key="searchShopping_4"> <!-- 작성자 -->
+AND EMPLOYEE_NM LIKE '%' || ? || '%'
+</entry>
+
+<!-- 게시글 검색3(ORDER BY) -->
+<entry key="searchShopping3">
+ORDER BY SHOPPING_NO DESC
+</entry>
 
 </properties>
