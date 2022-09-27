@@ -28,8 +28,8 @@ public class ShoppingView {
 				System.out.println("\n ★ 쇼핑몰 기능 ★ \n");
 				System.out.println("1. 쇼핑몰 목록 조회");
 				System.out.println("2. 쇼핑몰 상세 조회");
-				System.out.println("3. 게시글 작성");
-				System.out.println("4. 게시글 검색");
+				System.out.println("3. 쇼핑몰 게시글 작성");
+				System.out.println("4. 쇼핑몰 게시글 검색");
 				System.out.println("0. 로그인메뉴로 이동");
 				
 				System.out.print("\n메뉴 선택 : ");
@@ -41,8 +41,8 @@ public class ShoppingView {
 				switch(input) {
 				case 1: selectAllShopping(); break; // 쇼핑몰 목록 조회
 				case 2: selectShopping(); break; 	// 쇼핑몰 상세 조회
-				case 3: insertShopping(); break; 	// 게시글 등록 (삽입)
-				case 4: searchShopping(); break; 	// 게시글 검색
+				case 3: insertShopping(); break; 	// 쇼핑몰 게시글 등록 (삽입)
+				case 4: searchShopping(); break; 	// 쇼핑몰 게시글 검색
 				case 0: System.out.println("[로그인 메뉴로 이동합니다.]"); break;
 				default : System.out.println("메뉴에 작성된 번호만 입력 해주세요.");
 				}
@@ -89,7 +89,9 @@ public class ShoppingView {
 
 	}
 	
-	
+	/**
+	 * 쇼핑몰 상세 조회
+	 */
 	private void selectShopping() {
 		
 		System.out.println("\n[쇼핑몰 상세 조회]\n");
@@ -99,7 +101,7 @@ public class ShoppingView {
 			int shoppingNo = sc.nextInt();
 			sc.nextLine();
 			
-			// 게시글 상세 조회 서비스 호출 후 결과 반환 받기
+			// 쇼핑몰 상세 조회 서비스 호출 후 결과 반환 받기
 			Shopping shopping = sService.selectShopping(shoppingNo, EmployeeView.loginEmployee.getEmployeeNo());
 											//게시글번호, 로그인한 회원의 회원번호
 											//			-> 자신의 글 조회수 증가 X​
@@ -134,7 +136,7 @@ public class ShoppingView {
 		}
 	}
 	
-	/** 게시글 상세조회 시 출력되는 서브 메뉴
+	/** 쇼핑몰 상세조회 시 출력되는 서브 메뉴
 	 * @param shopping(상세조회된 게시글 + 작성자 번호 + 댓글 목록)
 	 */
 	private void subShoppingMenu(Shopping shopping) {
@@ -542,12 +544,12 @@ public class ShoppingView {
 				} else {
 					for(Shopping s : shoppingList) {
 						
-						// 3 | 샘플 제목3[4] | 유저삼 | 3시간전 | 10
+						// 번호 | 제목 | 이름 | 시간(3시간전) | 조회수
 						System.out.printf("%d | %s[%d] | %s | %s | %d\n",
 								s.getShoppingNo(), s.getShoppingTitle(), s.getComCount(),
 								s.getEmployeeName(), s.getCreateDate(), s.getReadCount());
 					}
-				}				
+				}
 	
 			} else { // 비정상 입력
 				System.out.println("\n[1~4번 사이의 숫자를 입력해주세요]\n");
@@ -556,7 +558,7 @@ public class ShoppingView {
 		} catch (Exception e) {
 			System.out.println("\n<<게시글 검색 중 예외 발생>>\n");
 			e.printStackTrace();
-		}		
+		}
 		
 	}
 	
