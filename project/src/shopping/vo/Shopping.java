@@ -93,8 +93,8 @@ public class Shopping {
 		return comCount;
 	}
 
-	public void setComCount(int commentCount) {
-		this.comCount = commentCount;
+	public void setComCount(int comCount) {
+		this.comCount = comCount;
 	}
 	
 	public List<Com> getComList() {
