@@ -9,7 +9,7 @@ public class OrderView {
 
 	private Scanner sc = new Scanner(System.in);	
 
-	private OrderService aService = new OrderService();
+	private OrderService oService = new OrderService();
 	
 	public void ordermenu() {
 		
