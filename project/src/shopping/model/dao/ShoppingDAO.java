@@ -14,7 +14,6 @@ import java.util.Properties;
 import shopping.vo.Shopping;
 
 public class ShoppingDAO {
-
 	
 	private Statement stmt;
 	private PreparedStatement pstmt;
@@ -82,4 +81,59 @@ public class ShoppingDAO {
 		
 	}
 
+	/**
+	 * @param conn
+	 * @param shoppingNo
+	 * @return
+	 * @throws Exception
+	 */
+	public Shopping selectShopping(Connection conn, int shoppingNo) throws Exception {
+
+		// 결과 저장용 변수 선언
+		Shopping shopping = null;
+		
+		try {
+			String sql = prop.getProperty("selectShopping"); // SQL 얻어오기
+			 
+			pstmt = conn.prepareStatement(sql); // PreparedStatement 생성
+			
+			pstmt.setInt(1, shoppingNo); // ? 알맞은 값 대입
+			
+			rs = pstmt.executeQuery(); // SQL(SELECT) 수행 후 결과(ResultSet) 반환 받기
+			
+			if(rs.next()) { // 조회 결과가 있을 경우
+				shopping = new Shopping(); // Board 객체 생성 == board는 null 아님
+				
+				shopping.setShoppingNo(		rs.getInt	("SHOPPING_NO"));
+				shopping.setShoppingTitle(	rs.getString("SHOPPING_TITLE"));
+				shopping.setShoppingContent(rs.getString("SHOPPING_CONTENT"));
+				shopping.setEmployeeNo(		rs.getInt	("EMPLOYEE_NO"));
+				shopping.setEmployeeName(	rs.getString("EMPLOYEE_NM"));
+				shopping.setReadCount(		rs.getInt	("READ_COUNT"));
+				shopping.setCreateDate(		rs.getString("CREATE_DT"));
+
+			}
+			
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return shopping; // 조회 결과
+		
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
