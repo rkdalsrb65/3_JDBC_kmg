@@ -157,7 +157,7 @@ public class ShoppingDAO {
 		int result = 0;
 		
 		try {
-			String sql = prop.getProperty("updateㄴhopping");
+			String sql = prop.getProperty("updateShopping");
 			
 			pstmt = conn.prepareStatement(sql); // PreparedStatement 생성
 			// ? 알맞은 값 대입
