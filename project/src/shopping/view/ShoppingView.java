@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import Employee.view.EmployeeView;
+import order.model.service.OrderService;
 import shopping.model.service.ComService;
 import shopping.model.service.ShoppingService;
 import shopping.vo.Com;
@@ -16,7 +17,9 @@ public class ShoppingView {
 	
 	private ShoppingService sService = new ShoppingService();
 	
-	private ComService cService = new ComService();	
+	private ComService cService = new ComService();
+	
+	private OrderService oService = new OrderService();
 	
 	public void shoppingmenu() {
 	
@@ -447,7 +450,6 @@ public class ShoppingView {
 			e.printStackTrace();		
 		}	
 	}
-	
 	
 	/**
 	 *  게시글 등록(삽입)
