@@ -172,9 +172,11 @@ public class EmployeeDAO {
 		
 	     String employeeId = null;
 	     
-	     String sql = "SELECT EMPLOYEE_ID"
-	           + " FROM EMPLOYEE"
-	           + " WHERE EMPLOYEE_NM = ?";
+//	     String sql = "SELECT EMPLOYEE_ID"
+//	           + " FROM EMPLOYEE"
+//	           + " WHERE EMPLOYEE_NM = ?";
+	     
+	     String sql = prop.getProperty("findId");
 	     
 	     pstmt = conn.prepareStatement(sql);
 	     pstmt.setString(1, userName);
@@ -198,10 +200,12 @@ public class EmployeeDAO {
 
 	     String employeePw = null;
 	     
-	     String sql = "SELECT EMPLOYEE_PW"
-	           + " FROM EMPLOYEE"
-	           + " WHERE EMPLOYEE_ID = ?"
-	           + " AND EMPLOYEE_NM = ?";
+//	     String sql = "SELECT EMPLOYEE_PW"
+//	           + " FROM EMPLOYEE"
+//	           + " WHERE EMPLOYEE_ID = ?"
+//	           + " AND EMPLOYEE_NM = ?";
+	     
+	     String sql = prop.getProperty("findPw");	
 	     
 	     pstmt = conn.prepareStatement(sql);
 	     pstmt.setString(1, userId);
