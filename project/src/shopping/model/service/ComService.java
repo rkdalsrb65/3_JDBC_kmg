@@ -22,7 +22,7 @@ public class ComService {
 		Connection conn = getConnection(); // 커넥션 생성		
 
 		// DAO 메서드 호출 후 결과 반환 받기
-		int result = dao.insertComment(conn, com);
+		int result = dao.insertCom(conn, com);
 		
 		if(result > 0)  commit(conn);
 		else			rollback(conn);
