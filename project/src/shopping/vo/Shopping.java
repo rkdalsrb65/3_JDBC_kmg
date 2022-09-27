@@ -1,5 +1,7 @@
 package shopping.vo;
 
+import java.util.List;
+
 public class Shopping {
 
 	private int shoppingNo; 		// 상품 번호
@@ -9,14 +11,16 @@ public class Shopping {
 	private int readCount; 			// 조회수
 	private int employeeNo; 		// 작성자 회원 번호
 	private String employeeName; 	// 작성자 회원 이름
-	private int commentCount;		// 댓글 수	
+	private int comCount;		// 댓글 수	
+	
+	private List<Com> comList;		// 댓글 목록
 	
 	// 기본 생성자
 	public Shopping() { }
 
 	// 매개 변수 생성자
 	public Shopping(int shoppingNo, String shoppingTitle, String shoppingContent, String createDate, int readCount,
-			int employeeNo, String employeeName, int commentCount) {
+			int employeeNo, String employeeName, int comCount) {
 		super();
 		this.shoppingNo = shoppingNo;
 		this.shoppingTitle = shoppingTitle;
@@ -25,7 +29,7 @@ public class Shopping {
 		this.readCount = readCount;
 		this.employeeNo = employeeNo;
 		this.employeeName = employeeName;
-		this.commentCount = commentCount;
+		this.comCount = comCount;
 	}
 
 	// getter / setter
@@ -85,15 +89,21 @@ public class Shopping {
 		this.employeeName = employeeName;
 	}
 
-	public int getCommentCount() {
-		return commentCount;
+	public int getComCount() {
+		return comCount;
 	}
 
-	public void setCommentCount(int commentCount) {
-		this.commentCount = commentCount;
+	public void setComCount(int commentCount) {
+		this.comCount = commentCount;
 	}
 	
-	
+	public List<Com> getComList() {
+		return comList;
+	}
+
+	public void setComList(List<Com> comList) {
+		this.comList = comList;
+	}	
 	
 	
 }
