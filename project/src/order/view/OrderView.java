@@ -15,7 +15,7 @@ public class OrderView {
 
 	private OrderService oService = new OrderService();
 	
-	public void ordermenu() {
+	public void orderMenu() {
 		
 		int input = -1;
 		
