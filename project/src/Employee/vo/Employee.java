@@ -94,10 +94,4 @@ public class Employee {
 		this.secessionFlag = secessionFlag;
 	}
 	
-
-	
-	
-	
-	
-	
 }
