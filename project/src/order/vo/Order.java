@@ -12,7 +12,7 @@ public class Order {
 	private String employeeName;	// 회원 이름
 	private String createDate;		// 작성일
 	private String shoppingTitle;	// 상품 제목
-	private String readCount;		// 조회수
+	private int readCount;			// 조회수
 	private String shoppingContent;	// 상품내용
 	
 	
@@ -41,11 +41,11 @@ public class Order {
 		this.shoppingTitle = shoppingTitle;
 	}
 
-	public String getReadCount() {
+	public int getReadCount() {
 		return readCount;
 	}
 
-	public void setReadCount(String readCount) {
+	public void setReadCount(int readCount) {
 		this.readCount = readCount;
 	}
 
@@ -58,7 +58,7 @@ public class Order {
 	}
 
 	public Order(int orderNo, int ordePrice, String orderDate, int employeeNo, int shoppingNo, int comNo,
-			String employeeName, String createDate, String shoppingTitle, String readCount, String shoppingContent) {
+			String employeeName, String createDate, String shoppingTitle, int readCount, String shoppingContent) {
 		super();
 		this.orderNo = orderNo;
 		this.ordePrice = ordePrice;
