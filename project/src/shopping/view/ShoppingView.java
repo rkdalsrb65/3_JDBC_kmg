@@ -67,29 +67,29 @@ public class ShoppingView {
 	private void selectAllShopping() {
 		
 		System.out.println("\n[쇼핑몰 목록 조회]\n");
-
+		
 		try {
 			List<Shopping> shoppingList = sService.selectAllShopping();
 			// -> DAO에서 new ArrayList<>(); 구문으로 인해
 			// 반환되는 조회 결과는 null이 될 수 없다!!!
-
+			
 			if (shoppingList.isEmpty()) { // 조회 결과가 없을 경우
 				System.out.println("게시글이 존재하지 않습니다.");
-
+				
 			} else {
 				for (Shopping s : shoppingList) {
-
+					
 					// 번호 | 제목 | 이름 | 시간(3시간전) | 조회수
 					System.out.printf("%d | %s[%d] | %s | %s | %d\n", s.getShoppingNo(), s.getShoppingTitle(),
 							s.getComCount(), s.getEmployeeName(), s.getCreateDate(), s.getReadCount());
 				}
 			}
-
+			
 		} catch (Exception e) {
 			System.out.println("\n<<쇼핑몰 목록 조회 중 예외 발생>>\n");
 			e.printStackTrace();
 		}
-
+		
 	}
 	
 	/**
