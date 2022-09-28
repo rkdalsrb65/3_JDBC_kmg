@@ -22,7 +22,7 @@ public class EmployeeView {
 	// 쇼핑 기능 메뉴 객체 생성
 	private ShoppingView shoppingView = new ShoppingView();
 	
-	// 경매 기능 메뉴 객체 생성
+	// 주문 기능 메뉴 객체 생성
 	private OrderView orderView = new OrderView();
 	
 	//메뉴 번호를 입력 받기 위한 변수
