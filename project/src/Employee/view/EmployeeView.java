@@ -61,7 +61,7 @@ public class EmployeeView {
 					
 					System.out.println("\n ★ 로그인 메뉴 ★ \n");
 					System.out.println("1. 쇼핑몰 기능");
-					System.out.println("2. 경매 기능");
+					System.out.println("2. 주문 기능");
 					System.out.println("0. 로그아웃");
 					System.out.println("99. 프로그램 종료");
 					
