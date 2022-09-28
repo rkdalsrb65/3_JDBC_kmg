@@ -21,7 +21,7 @@ public class ShoppingView {
 	
 	private OrderService oService = new OrderService();
 	
-	public void shoppingmenu() {
+	public void shoppingMenu() {
 	
 		int input = -1;
 		
