@@ -106,7 +106,7 @@ public class ShoppingView {
 			
 			// 쇼핑몰 상세 조회 서비스 호출 후 결과 반환 받기
 			Shopping shopping = sService.selectShopping(shoppingNo, EmployeeView.loginEmployee.getEmployeeNo());
-											//게시글번호, 로그인한 회원의 회원번호
+											//쇼핑몰번호, 로그인한 회원의 회원번호
 											//			-> 자신의 글 조회수 증가 X​
 	        if (shopping != null) {
 	            System.out.println("--------------------------------------------------------");
@@ -398,7 +398,7 @@ public class ShoppingView {
 			System.out.print("수정할 제목 : ");
 			String shoppingTitle = sc.nextLine();
 			
-			System.out.println("수정할 내용");
+			System.out.println("수정할 내용 : ");
 			String shoppingContent = inputContent();
 			
 			// 수정된 제목/내용 + 게시글 번호를 한 번에 전달하기위한 Board 객체 생성
