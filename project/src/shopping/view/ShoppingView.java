@@ -401,7 +401,7 @@ public class ShoppingView {
 			System.out.println("수정할 내용 : ");
 			String shoppingContent = inputContent();
 			
-			// 수정된 제목/내용 + 게시글 번호를 한 번에 전달하기위한 Board 객체 생성
+			// 수정된 제목/내용 + 게시글 번호를 한 번에 전달하기위한 Shopping 객체 생성
 			Shopping shopping = new Shopping();
 			shopping.setShoppingNo(shoppingNo);
 			shopping.setShoppingTitle(shoppingTitle);
@@ -465,7 +465,7 @@ public class ShoppingView {
 			System.out.println("내용 : ");
 			String shoppingContent = inputContent();
 			
-			// Board 객체에 제목, 내용, 회원 번호를 담아서 서비스에 전달
+			// Shopping 객체에 제목, 내용, 회원 번호를 담아서 서비스에 전달
 			Shopping shopping = new Shopping();
 			shopping.setShoppingTitle(shoppingTitle);
 			shopping.setShoppingContent(shoppingContent);
