@@ -11,7 +11,7 @@ public class Shopping {
 	private int readCount; 			// 조회수
 	private int employeeNo; 		// 작성자 회원 번호
 	private String employeeName; 	// 작성자 회원 이름
-	private int comCount;		// 댓글 수	
+	private int comCount;			// 댓글 수	
 	
 	private List<Com> comList;		// 댓글 목록
 	
