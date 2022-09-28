@@ -2,4 +2,11 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 <comment>order.xml file</comment>
+
+<!-- 주문 신청 -->
+<entry key="requestOrder">
+
+</entry>
+
+
 </properties>
