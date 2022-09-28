@@ -28,7 +28,6 @@ public class EmployeeView {
 	//메뉴 번호를 입력 받기 위한 변수
 	private int input = -1;
 	
-	
 	public void mainMenu() {
 		
 		do {
@@ -269,14 +268,6 @@ public class EmployeeView {
 	     }
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 }
