@@ -5,7 +5,7 @@ import Employee.view.EmployeeView;
 public class EmployeeRun {
 	public static void main(String[] args) {
 		
-		new EmployeeView().mainMenu();		
-			
+		new EmployeeView().mainMenu();
+		
 	}
 }
