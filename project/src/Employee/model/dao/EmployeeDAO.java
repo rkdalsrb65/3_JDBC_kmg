@@ -205,7 +205,7 @@ public class EmployeeDAO {
 //	           + " WHERE EMPLOYEE_ID = ?"
 //	           + " AND EMPLOYEE_NM = ?";
 	     
-	     String sql = prop.getProperty("findPw");	
+	     String sql = prop.getProperty("findPw");
 	     
 	     pstmt = conn.prepareStatement(sql);
 	     pstmt.setString(1, userId);
