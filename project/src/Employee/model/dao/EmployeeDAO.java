@@ -70,12 +70,12 @@ public class EmployeeDAO {
 				loginEmployee.setEnrollDate(rs.getString("ENROLL_DATE"));			// 회원 가입일
 				
 			}
-	
+			
 		} finally {
 			// 7. 사용한 JDBC 객체 자원 반환
 			close(rs);
 			close(pstmt);
-
+			
 		}
 		// 8. 조회 결과 반환
 		return loginEmployee;
