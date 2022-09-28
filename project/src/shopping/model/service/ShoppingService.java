@@ -50,7 +50,7 @@ public class ShoppingService {
 			// 2. 댓글 목록 조회 DAO 호출
 			List<Com> comList = cDao.selectComList(conn, shoppingNo);
 			
-			// 조회된 댓글 목록을 board에 저장
+			// 조회된 댓글 목록을 shopping에 저장
 			shopping.setComList(comList);
 			
 			// 3. 조회 수 증가
@@ -61,7 +61,7 @@ public class ShoppingService {
 				// 트랜잭션 제어
 				if(result > 0) {
 					commit(conn);
-					// 미리 조회된 board의 조회 수를
+					// 미리 조회된 shopping의 조회 수를
 					// 증가된 DB의 조회 수와 동일 한 값을 가지도록 동기화
 					shopping.setReadCount(shopping.getReadCount() + 1);
 				}
@@ -139,7 +139,7 @@ public class ShoppingService {
 			commit(conn); // 커밋할지
 			
 			result = shoppingNo;
-			// INSERT 성공 시 생성된 게시글 번호(boardNo)를 결과로 반환
+			// INSERT 성공 시 생성된 게시글 번호(shoppingNo)를 결과로 반환
 		}
 		else 			rollback(conn); // 롤백할지
 		
