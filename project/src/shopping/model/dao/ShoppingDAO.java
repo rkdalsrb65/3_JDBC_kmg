@@ -102,7 +102,7 @@ public class ShoppingDAO {
 			rs = pstmt.executeQuery(); // SQL(SELECT) 수행 후 결과(ResultSet) 반환 받기
 			
 			if(rs.next()) { // 조회 결과가 있을 경우
-				shopping = new Shopping(); // Board 객체 생성 == board는 null 아님
+				shopping = new Shopping(); // Shopping 객체 생성 == shopping는 null 아님
 				
 				shopping.setShoppingNo(		rs.getInt	("SHOPPING_NO"));
 				shopping.setShoppingTitle(	rs.getString("SHOPPING_TITLE"));
@@ -315,18 +315,5 @@ public class ShoppingDAO {
 		return shoppingList;		
 		
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }
