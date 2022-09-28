@@ -58,20 +58,5 @@ public class Com {
 	public void setShoppingNo(int shoppingNo) {
 		this.shoppingNo = shoppingNo;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }
