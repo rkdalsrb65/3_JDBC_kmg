@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import Employee.model.service.EmployeeService;
 import Employee.vo.Employee;
+import mem.view.MemView;
 import order.view.OrderView;
 import shopping.view.ShoppingView;
 
@@ -18,6 +19,9 @@ public class EmployeeView {
 	// 로그인 회원 정보 저장용 변수
 //	private Employee loginEmployee = null;
 	public static Employee loginEmployee = null;
+	
+	// 회원 기능 메뉴 객체 생성
+	private MemView memView = new MemView();
 	
 	// 쇼핑 기능 메뉴 객체 생성
 	private ShoppingView shoppingView = new ShoppingView();
@@ -59,8 +63,9 @@ public class EmployeeView {
 				} else { // 로그인 O
 					
 					System.out.println("\n ★ 로그인 메뉴 ★ \n");
-					System.out.println("1. 쇼핑몰 기능");
-					System.out.println("2. 주문 기능");
+					System.out.println("1. 회원 기능");
+					System.out.println("2. 쇼핑몰 기능");
+					System.out.println("3. 주문 기능");
 					System.out.println("0. 로그아웃");
 					System.out.println("99. 프로그램 종료");
 					
@@ -71,8 +76,9 @@ public class EmployeeView {
 
 				switch (input) {
 				// 회원 기능 서브 메뉴 출력
-				case 1: shoppingView.shoppingmenu(); break;
-				case 2: orderView.ordermenu(); break;
+				case 1: memView.employeeMenu(loginEmployee); break;
+				case 2: shoppingView.shoppingMenu(); break;
+				case 3: orderView.orderMenu(); break;
 				case 0: loginEmployee = null; System.out.println("\n[로그아웃 되었습니다.]");
 				input = -1; // do-while문이 종료되지 않도록 0이 아닌 값으로 변경
 				break; 		// 로그아웃 == loginEmployee가 참조하는 객체 없음(== null)
