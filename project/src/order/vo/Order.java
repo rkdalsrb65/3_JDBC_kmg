@@ -9,6 +9,70 @@ public class Order {
 	private int shoppingNo;	 // 쇼핑몰 번호
 	private int comNo;		 // 댓글 번호
 	
+	private String employeeName;	// 회원 이름
+	private String createDate;		// 작성일
+	private String shoppingTitle;	// 상품 제목
+	private String readCount;		// 조회수
+	private String shoppingContent;	// 상품내용
+	
+	
+	
+	public String getEmployeeName() {
+		return employeeName;
+	}
+
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
+	}
+
+	public String getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
+	}
+
+	public String getShoppingTitle() {
+		return shoppingTitle;
+	}
+
+	public void setShoppingTitle(String shoppingTitle) {
+		this.shoppingTitle = shoppingTitle;
+	}
+
+	public String getReadCount() {
+		return readCount;
+	}
+
+	public void setReadCount(String readCount) {
+		this.readCount = readCount;
+	}
+
+	public String getShoppingContent() {
+		return shoppingContent;
+	}
+
+	public void setShoppingContent(String shoppingContent) {
+		this.shoppingContent = shoppingContent;
+	}
+
+	public Order(int orderNo, int ordePrice, String orderDate, int employeeNo, int shoppingNo, int comNo,
+			String employeeName, String createDate, String shoppingTitle, String readCount, String shoppingContent) {
+		super();
+		this.orderNo = orderNo;
+		this.ordePrice = ordePrice;
+		this.orderDate = orderDate;
+		this.employeeNo = employeeNo;
+		this.shoppingNo = shoppingNo;
+		this.comNo = comNo;
+		this.employeeName = employeeName;
+		this.createDate = createDate;
+		this.shoppingTitle = shoppingTitle;
+		this.readCount = readCount;
+		this.shoppingContent = shoppingContent;
+	}
+
 	public Order() { }
 
 	public Order(int orderNo, int ordePrice, String orderDate, int employeeNo, int shoppingNo, int comNo) {
