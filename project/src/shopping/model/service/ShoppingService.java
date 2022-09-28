@@ -129,7 +129,7 @@ public class ShoppingService {
 		// 미리 게시글 번호를 생성해서 얻어온 다음 이를 이용해 INSERT 진행
 		int shoppingNo = dao.nextShoppingNo(conn);
 		
-		shopping.setShoppingNo(shoppingNo); // 얻어온 다음 번호를 board에 세팅
+		shopping.setShoppingNo(shoppingNo); // 얻어온 다음 번호를 shopping에 세팅
 		// -> 다음 게시글 번호, 제목, 내용, 회원 번호
 		
 		// 게시글 등록 DAO 호출
@@ -165,13 +165,5 @@ public class ShoppingService {
 		return shoppingList;		
 		
 	}	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }
