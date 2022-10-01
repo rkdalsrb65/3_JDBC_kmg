@@ -46,7 +46,6 @@ public class OrderDAO {
 			
 			rs = pstmt.executeQuery();
 			
-
 			if(rs.next()) {
 				order = new Order(); // Order 객체 생성 == order는 null 아님
 				
